@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- BUDGET LINE TREE VIEW -->
+    <record id="view_pkf_ac_budget_line_tree" model="ir.ui.view">
+        <field name="name">pkf.ac.budget.line.tree</field>
+        <field name="model">pkf.ac.budget.line</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="budget_type" invisible="1"/>
+                <field name="job_position_id"/>
+                <field name="hourly_rate"/>
+                <field name="hours" sum="Total Hours"/>
+                <field name="billable_amount" sum="Total Billable"/>
+                <field name="currency_id" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- BUDGET LINE GRAPH VIEW (for Visuals) -->
+    <record id="view_pkf_ac_budget_line_graph" model="ir.ui.view">
+        <field name="name">pkf.ac.budget.line.graph</field>
+        <field name="model">pkf.ac.budget.line</field>
+        <field name="arch" type="xml">
+            <graph string="Budget Analysis" type="pie">
+                                    <field name="job_position_id"/>
+                <field name="billable_amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ACTION FOR BUDGET ANALYSIS -->
+    <record id="action_pkf_ac_budget_analysis" model="ir.actions.act_window">
+        <field name="name">Budget Analysis</field>
+        <field name="res_model">pkf.ac.budget.line</field>
+        <field name="view_mode">graph,list</field>
+        <field name="domain">[('evaluation_id', '=', active_id), ('budget_type', '=', 'current')]</field>
+        <field name="context">{'default_evaluation_id': active_id, 'default_budget_type': 'current'}</field>
+    </record>
+
+    <!-- INHERIT FORM VIEW TO ADD BUDGET TAB -->
+    <record id="view_pkf_ac_evaluation_form_budget" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form.budget</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- Add Smart Button -->
+            <div name="button_box" position="inside">
+                <button name="%(pkf_ac.action_pkf_ac_budget_analysis)d"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-pie-chart"
+                        string="Budget Visuals">
+                </button>
+            </div>
+
+            <!-- Add Single Budget Tab -->
+            <notebook position="inside">
+                <page string="3 Budget" name="budget_page">
+                    <!-- Current Budget Section -->
+                    <group string="Current Budget" name="current_budget_group">
+                        <field name="current_budget_line_ids" nolabel="1" colspan="2" context="{'default_budget_type': 'current'}" readonly="state in ('done','done_locked','lost')">
+                            <list editable="bottom">
+                                <field name="budget_type" column_invisible="True"/>
+                                                    <field name="job_position_id"/>
+                                <field name="hourly_rate"/>
+                                <field name="hours" sum="Total Hours"/>
+                                <field name="billable_amount" sum="Total Billable"/>
+                                <field name="currency_id" column_invisible="True"/>
+                            </list>
+                        </field>
+                        <group>
+                            <field name="current_budget_file" filename="current_budget_file_name" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="current_total_hours" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="current_budget_discount" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="current_total_billable" class="oe_subtotal_footer_separator" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+
+                    <!-- Comparison Section -->
+                    <!-- Let's put Prior Budget below -->
+
+                    <separator string="Prior Budget"/>
+
+                    <field name="show_prior_budget" invisible="1"/>
+                    <button name="action_toggle_prior_budget" type="object" string="Expand Prior Budget" class="btn-secondary" invisible="show_prior_budget"/>
+                    <button name="action_toggle_prior_budget" type="object" string="Compress Prior Budget" class="btn-secondary" invisible="not show_prior_budget"/>
+
+                    <group invisible="not show_prior_budget">
+                        <group string="Budget" name="prior_budget_estimated_group">
+                            <field name="prior_budget_line_ids" nolabel="1" colspan="2" context="{'default_budget_type': 'prior_budget'}" readonly="state in ('done','done_locked','lost')">
+                                <list editable="bottom">
+                                    <field name="budget_type" column_invisible="True"/>
+                                                        <field name="job_position_id"/>
+                                    <field name="hourly_rate"/>
+                                    <field name="hours" sum="Total Hours"/>
+                                    <field name="billable_amount" sum="Total Billable"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </list>
+                            </field>
+                            <group>
+                                <field name="prior_budget_file" filename="prior_budget_file_name" readonly="state in ('done','done_locked','lost')"/>
+                            </group>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="prior_total_hours" readonly="state in ('done','done_locked','lost')"/>
+                                <field name="prior_budget_discount" readonly="state in ('done','done_locked','lost')"/>
+                                <field name="prior_total_billable" class="oe_subtotal_footer_separator" readonly="state in ('done','done_locked','lost')"/>
+                            </group>
+                        </group>
+
+                        <group string="Actual" name="prior_actual_group">
+                            <field name="prior_actual_line_ids" nolabel="1" colspan="2" context="{'default_budget_type': 'prior_actual'}" readonly="state in ('done','done_locked','lost')">
+                                <list editable="bottom">
+                                    <field name="budget_type" column_invisible="True"/>
+                                                        <field name="job_position_id"/>
+                                    <field name="hourly_rate"/>
+                                    <field name="hours" sum="Total Hours"/>
+                                    <field name="billable_amount" sum="Total Billable"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </list>
+                            </field>
+                            <group>
+                                <field name="prior_actual_file" filename="prior_actual_file_name" readonly="state in ('done','done_locked','lost')"/>
+                            </group>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="prior_actual_total_hours" readonly="state in ('done','done_locked','lost')"/>
+                                <field name="prior_actual_discount" readonly="state in ('done','done_locked','lost')"/>
+                                <field name="prior_actual_total_billable" class="oe_subtotal_footer_separator" readonly="state in ('done','done_locked','lost')"/>
+                                <field name="prior_budget_difference_amount" class="oe_subtotal_footer_separator" readonly="state in ('done','done_locked','lost')"/>
+                                <field name="prior_budget_difference_percent" class="oe_subtotal_footer_separator" readonly="state in ('done','done_locked','lost')"/>
+                            </group>
+                        </group>
+                    </group>
+
+                </page>
+            </notebook>
+
+        </field>
+    </record>
+
+</odoo>

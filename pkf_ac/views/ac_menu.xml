@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_pkf_ac_evaluation" model="ir.actions.act_window">
+        <field name="name">A&amp;C Evaluations</field>
+        <field name="res_model">pkf.ac.evaluation</field>
+        <field name="view_mode">list,form</field>
+        <field name="views" eval="[
+            (ref('pkf_ac.view_pkf_ac_evaluation_list'), 'list'),
+            (ref('pkf_ac.view_pkf_ac_evaluation_form'), 'form')
+        ]"/>
+        <field name="context">{'search_default_group_by_year': 1, 'search_default_group_by_risk': 1}</field>
+    </record>
+
+    <!-- NEW: Action for Clients -->
+    <record id="action_pkf_ac_clients" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="res_model">crm.lead</field>
+
+        <!-- Force our list view -->
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="pkf_ac.view_pkf_ac_clients_list"/>
+
+        <!-- Opportunities -->
+        <field name="domain">[('type', '=', 'opportunity')]</field>
+        <field name="context">{'default_type': 'opportunity'}</field>
+    </record>
+
+    <record id="action_pkf_ac_engagement_letter" model="ir.actions.act_window">
+        <field name="name">Engagement Letter</field>
+        <field name="res_model">engagement.letter</field>
+        <field name="view_mode">list,form</field>
+        <field name="views" eval="[
+            (ref('pkf_ac.view_engagement_letter_list_inherit_ac'), 'list'),
+            (ref('pkf_ac.view_engagement_letter_form_inherit_ac'), 'form')
+        ]"/>
+    </record>
+
+    <!-- Root menu (app icon) -->
+    <menuitem
+        id="menu_pkf_ac_root"
+        name="A&amp;C"
+        sequence="10"
+        web_icon="pkf_ac,static/description/icon.png"
+    />
+
+    <menuitem
+        id="menu_pkf_ac_main"
+        name="Main"
+        parent="menu_pkf_ac_root"
+        action="action_pkf_ac_evaluation"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_pkf_ac_clients"
+        name="Clients"
+        parent="menu_pkf_ac_root"
+        action="action_pkf_ac_clients"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_pkf_ac_engagement_letter"
+        name="Engagement Letter"
+        parent="menu_pkf_ac_root"
+        action="action_pkf_ac_engagement_letter"
+        sequence="30"
+    />
+
+    <menuitem
+            id="menu_pkf_ac_job_position"
+            name="Job Position"
+            parent="menu_pkf_ac_root"
+            action="action_pkf_ac_job_position"
+            sequence="40"
+    />
+
+
+</odoo>

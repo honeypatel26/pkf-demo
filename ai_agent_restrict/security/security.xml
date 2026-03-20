@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_ai_agent_management" model="ir.module.category">
+        <field name="name">AI Agent Management</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="res_groups_privilege_ai_agent" model="res.groups.privilege">
+        <field name="name">AI Agent</field>
+        <field name="category_id" ref="module_category_ai_agent_management"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_ai_agent_user" model="res.groups">
+        <field name="name">AI Agent User</field>
+        <field name="privilege_id" ref="res_groups_privilege_ai_agent"/>
+    </record>
+
+    <record id="group_ai_agent_manager" model="res.groups">
+        <field name="name">AI agent Administrator</field>
+        <field name="privilege_id" ref="res_groups_privilege_ai_agent"/>
+        <field name="implied_ids" eval="[(4, ref('group_ai_agent_user'))]"/>
+    </record>
+</odoo>

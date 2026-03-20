@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pkf_ac_evaluation_form_inherit_risk_panel" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form.inherit.risk.panel</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Risk Panel"
+                      name="risk_panel"
+                      groups="pkf_ac.group_pkf_ac_partner,pkf_ac.group_pkf_ac_admin">
+
+                    <group col="12">
+                        <separator string="REVIEW Committee / OVERRIDE" colspan="12"/>
+                    </group>
+
+                    <group col="12">
+                        <group colspan="6">
+                            <field name="select_review_type"
+                                   readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="external_member"
+                                   widget="many2one_avatar_user"
+                                   invisible="select_review_type != 'external'"
+                                   readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="committee_member_ids"
+                                   widget="many2many_tags_avatar"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+
+                        <group colspan="6">
+                            <field name="risk_score"
+                                   readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="override_explanation_reasoning"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

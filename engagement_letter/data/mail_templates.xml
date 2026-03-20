@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Template for Review Request -->
+    <record id="email_template_engagement_letter_review" model="mail.template">
+        <field name="name">Engagement Letter: Review Request</field>
+        <field name="model_id" ref="engagement_letter.model_engagement_letter"/>
+        <field name="subject">Engagement Letter Review: {{ object.name }}</field>
+        <field name="email_from">{{ (object.company_id.email or user.email_formatted) }}</field>
+        <field name="partner_to">{{ object.responsible_partner_id.id }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Hello <t t-out="object.responsible_partner_id.name"/>,<br/><br/>
+                    The engagement letter <strong><t t-out="object.name"/></strong> is ready for your review.
+                    <br/><br/>
+                    You can access it here: 
+                    <br/><br/>
+                    <div style="margin: 16px 0px 16px 0px;">
+                        <a t-att-href="'/web#id=%s&amp;model=engagement.letter&amp;view_type=form' % object.id" 
+                           style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                            View Engagement Letter
+                        </a>
+                    </div>
+                    <br/>
+                    Thank you.
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <!-- Template for Approved Notification -->
+    <record id="email_template_engagement_letter_approved" model="mail.template">
+        <field name="name">Engagement Letter: Approved</field>
+        <field name="model_id" ref="engagement_letter.model_engagement_letter"/>
+        <field name="subject">Engagement Letter Approved: {{ object.name }}</field>
+        <field name="email_from">{{ (object.company_id.email or user.email_formatted) }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Hello,<br/><br/>
+                    The engagement letter <strong><t t-out="object.name"/></strong> has been approved by the partner.
+                    <br/><br/>
+                    You can access it here: 
+                    <br/><br/>
+                    <div style="margin: 16px 0px 16px 0px;">
+                        <a t-att-href="'/web#id=%s&amp;model=engagement.letter&amp;view_type=form' % object.id" 
+                           style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                            View Engagement Letter
+                        </a>
+                    </div>
+                    <br/>
+                    Thank you.
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>

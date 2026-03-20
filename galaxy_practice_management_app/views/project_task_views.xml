@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_form2_inherit_subtask_timesheet" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.subtask.timesheet</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_manual_recurrence" string="Create Next Recurrence" type="object" invisible="not is_last_recurrence"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" invisible="invoice_count == 0">
+                    <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/list" position="inside">
+                <field name="uninvoiced_hours" widget="timesheet_uom" sum="Total" optional="show"/>
+                <button name="action_log_timesheet" type="object" string="Log Time" icon="fa-clock-o" class="btn-secondary"/>
+            </xpath>
+            <xpath expr="/form//div[@id='date_deadline_and_recurring_task']" position="after">
+                <field name="planned_date_begin"/>
+            </xpath>
+            <xpath expr="/form/sheet/group/group/field[@name='user_ids']" position="after">
+                <field name="invoice_no" invisible="not invoice_no"/>
+                <field name="sub_task_invoice_nos" invisible="not sub_task_invoice_nos"/>
+                <field name="total_uninvoiced_hours" widget="timesheet_uom" invisible="total_uninvoiced_hours == 0"/>
+                <field name="uninvoiced_hours" widget="timesheet_uom" invisible="1"/> <!-- Keep hidden in main form unless needed, or show both -->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_task_view_tree_base_inherit_gpma" model="ir.ui.view">
+        <field name="name">project.task.tree.inherit.gpma</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.project_task_view_tree_base"/>
+        <field name="arch" type="xml">
+            <field name="date_deadline" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="date_deadline" position="after">
+                <field name="planned_date_begin" optional="hide"/>
+                <field name="total_uninvoiced_hours" widget="timesheet_uom" invisible="total_uninvoiced_hours == 0"/>
+            </field>
+            <field name="partner_id" position="after">
+                <button name="action_view_all_invoices" type="object" string="Invoices" icon="fa-pencil-square-o" class="btn-secondary"/>
+            </field>
+        </field>
+    </record>
+</odoo>

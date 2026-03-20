@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- LIST -->
+    <record id="view_pkf_ac_evaluation_list" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.list</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="overall_risk_level"/>
+                <field name="evaluation_type"/>
+                <field name="engagement_type"/>
+                <field name="engagement_id"/>
+                <field name="client_id"/>
+                <field name="pkf_office_id"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- SEARCH -->
+    <record id="view_pkf_ac_evaluation_search" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.search</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="arch" type="xml">
+            <search string="Acceptance &amp; Continuance Evaluations">
+                <field name="name"/>
+                <field name="engagement_id"/>
+                <field name="client_id"/>
+                <field name="engagement_type"/>
+
+                <filter name="filter_my_records" string="My Records" domain="[('create_uid', '=', uid)]"/>
+
+                <separator/>
+
+                <filter name="group_by_year" string="By Year" context="{'group_by': 'create_year'}"/>
+                <filter name="group_by_risk" string="By Risk" context="{'group_by': 'overall_risk_level'}"/>
+                <filter name="group_by_state" string="By Status" context="{'group_by': 'state'}"/>
+                <filter name="group_by_evaluation_type" string="By Evaluation Type" context="{'group_by': 'evaluation_type'}"/>
+                <filter name="group_by_engagement_type" string="By Engagement Type" context="{'group_by': 'engagement_type'}"/>
+                <filter name="group_by_client" string="By Client" context="{'group_by': 'client_id'}"/>
+                <filter name="group_by_office" string="By Office" context="{'group_by': 'pkf_office_id'}"/>
+                <filter name="group_by_created_by" string="By Created by" context="{'group_by': 'create_uid'}"/>
+                <filter name="group_by_create_date" string="By Created Date" context="{'group_by': 'create_date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record id="view_pkf_ac_evaluation_form" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="Acceptance &amp; Continuance Evaluation">
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="new,in_progress,done,unlock,done_locked,lost"/>
+
+                    <button name="action_set_in_progress" type="object" string="In Progress"
+                            class="btn-primary"
+                            invisible="state != 'new'"/>
+
+                    <!-- DONE - only Partner & Admin -->
+                    <button name="action_set_done" type="object" string="Done"
+                            class="btn-primary"
+                            invisible="state not in ('in_progress','unlock')"
+                            groups="pkf_ac.group_pkf_ac_partner,pkf_ac.group_pkf_ac_admin"/>
+
+                    <!-- UNLOCK - only Partner & Admin -->
+                    <button name="action_set_unlock" type="object" string="Unlock"
+                            invisible="state not in ('done','done_locked')"
+                            groups="pkf_ac.group_pkf_ac_partner,pkf_ac.group_pkf_ac_admin"/>
+
+                    <!-- DONE LOCKED - only Partner & Admin -->
+                    <button name="action_set_done_locked" type="object" string="Done/Locked"
+                            class="btn-primary"
+                            invisible="state != 'done'"
+                            groups="pkf_ac.group_pkf_ac_partner,pkf_ac.group_pkf_ac_admin"/>
+
+                    <button name="action_set_lost" type="object" string="Lost/Deselected"
+                            class="btn-secondary"
+                            invisible="state in ('done_locked','lost')"/>
+                    <button name="action_create_engagement_letter" type="object" string="Create Engagement Letter"
+                            class="btn-primary" invisible="state in ('new','lost')"/>
+                    <button name="action_send_evaluation_email" type="object" string="Send"
+                            class="btn-primary" invisible="state in ('lost')"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_engagement_letters"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-file-text-o"
+                                invisible="engagement_letter_count == 0">
+                            <field name="engagement_letter_count" widget="statinfo" string="Eng. Letters"/>
+                        </button>
+                    </div>
+                    <div class="oe_title" style="display: flex; align-items: center; justify-content: space-between;">
+
+                        <!-- Name (left) -->
+                        <h1 style="margin: 0;">
+                            <field name="name" readonly="1"/>
+                        </h1>
+
+                        <!-- Big Risk Badge (right) -->
+                        <field name="overall_risk_level"
+                               readonly="1"
+                               widget="badge"
+                               style="font-size: 20px; padding: 10px 20px;"
+                               decoration-success="overall_risk_level == 'low'"
+                               decoration-warning="overall_risk_level == 'medium'"
+                               decoration-danger="overall_risk_level == 'high'"
+                               decoration-muted="overall_risk_level == 'unknown'"/>
+                    </div>
+
+                    <group>
+                        <!-- LEFT COLUMN -->
+                        <group>
+                            <field name="evaluation_type" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="engagement_type" required="1" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="engagement_id" required="1" readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="client_id" readonly="1"/>
+
+                            <field name="major_relationships" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="client_since" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="industry" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="main_operations" readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="engagement_partner_id" widget="many2one_avatar_user"
+                                   readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="partner_since" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="type_of_organization" readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="manager_assigned_id" widget="many2one_avatar_user"
+                                   readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="assignee_ids" widget="many2many_avatar_user"/>
+<!--                                   readonly="state in ('done','done_locked','lost')"/>-->
+
+                            <field name="pkf_office_id" required="1"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+
+                        <!-- RIGHT COLUMN -->
+                        <group>
+                            <field name="deadline_for_completion" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="stock_exchange" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="location_of_stock_exchange" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="client_stock_symbol" readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="market_capitalization" readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="currency_id"
+                                   readonly="state in ('done','done_locked','lost')"
+                                   required="market_capitalization"/>
+
+                            <field name="financial_reporting_framework_id" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="auditing_standards_used_id" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="year_end_date" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="eqcr_needed" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="sec_registrant" readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="partner_reviewer_id" widget="many2one_avatar_user"
+                                   invisible="eqcr_needed != 'yes'"
+                                   readonly="state in ('done','done_locked','lost')"/>
+
+                            <field name="reviewer_since"
+                                   invisible="eqcr_needed != 'yes'"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                            <field name="source_create_date"
+                                   readonly="1"
+                                   invisible="not source_create_date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="1 Overview" name="tab_overview">
+                            <group/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+</odoo>

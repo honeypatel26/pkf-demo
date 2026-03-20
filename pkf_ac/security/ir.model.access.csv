@@ -1,0 +1,34 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pkf_ac_evaluation_user,pkf.ac.evaluation user,model_pkf_ac_evaluation,pkf_ac.group_pkf_ac_user,1,1,1,0
+access_pkf_ac_evaluation_manager,pkf.ac.evaluation manager,model_pkf_ac_evaluation,pkf_ac.group_pkf_ac_manager,1,1,1,0
+access_pkf_ac_evaluation_senior_manager,pkf.ac.evaluation senior manager,model_pkf_ac_evaluation,pkf_ac.group_pkf_ac_senior_manager,1,1,1,0
+access_pkf_ac_evaluation_partner,pkf.ac.evaluation partner,model_pkf_ac_evaluation,pkf_ac.group_pkf_ac_partner,1,1,1,1
+access_pkf_ac_evaluation_admin,pkf.ac.evaluation admin,model_pkf_ac_evaluation,pkf_ac.group_pkf_ac_admin,1,1,1,1
+access_pkf_ac_budget_line_user,pkf.ac.budget.line user,model_pkf_ac_budget_line,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_pkf_ac_job_position,pkf.ac.job.position,model_pkf_ac_job_position,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_pkf_ac_relationship_person,pkf.ac.relationship.person,model_pkf_ac_relationship_person,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_pkf_ac_media_research,pkf.ac.media.research,model_pkf_ac_media_research,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_trend_research,access.trend.research,model_trend_research,base.group_user,1,1,1,1
+access_pkf_ac_team_independence,pkf.ac.team.independence,model_pkf_ac_team_independence,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_pkf_ac_reporting_framework,pkf.ac.reporting.framework,model_pkf_ac_reporting_framework,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_pkf_ac_auditing_standard,pkf.ac.auditing.standard,model_pkf_ac_auditing_standard,pkf_ac.group_pkf_ac_user,1,1,1,1
+
+access_pkf_ac_budget_line_manager,pkf.ac.budget.line manager,model_pkf_ac_budget_line,pkf_ac.group_pkf_ac_manager,1,1,1,1
+access_pkf_ac_budget_line_senior_manager,pkf.ac.budget.line senior manager,model_pkf_ac_budget_line,pkf_ac.group_pkf_ac_senior_manager,1,1,1,1
+access_pkf_ac_budget_line_partner,pkf.ac.budget.line partner,model_pkf_ac_budget_line,pkf_ac.group_pkf_ac_partner,1,1,1,1
+access_pkf_ac_budget_line_admin,pkf.ac.budget.line admin,model_pkf_ac_budget_line,pkf_ac.group_pkf_ac_admin,1,1,1,1
+access_pkf_ac_job_position_user,pkf.ac.job.position user,model_pkf_ac_job_position,pkf_ac.group_pkf_ac_user,1,0,0,0
+access_pkf_ac_job_position_manager,pkf.ac.job.position manager,model_pkf_ac_job_position,pkf_ac.group_pkf_ac_manager,1,0,0,0
+access_pkf_ac_job_position_senior_manager,pkf.ac.job.position senior manager,model_pkf_ac_job_position,pkf_ac.group_pkf_ac_senior_manager,1,0,0,0
+access_pkf_ac_job_position_partner,pkf.ac.job.position partner,model_pkf_ac_job_position,pkf_ac.group_pkf_ac_partner,1,0,0,0
+access_pkf_ac_job_position_admin,pkf.ac.job.position admin,model_pkf_ac_job_position,pkf_ac.group_pkf_ac_admin,1,1,1,1
+access_pkf_ac_relationship_person_user,pkf.ac.relationship.person user,model_pkf_ac_relationship_person,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_pkf_ac_relationship_person_manager,pkf.ac.relationship.person manager,model_pkf_ac_relationship_person,pkf_ac.group_pkf_ac_manager,1,1,1,1
+access_pkf_ac_relationship_person_senior_manager,pkf.ac.relationship.person senior manager,model_pkf_ac_relationship_person,pkf_ac.group_pkf_ac_senior_manager,1,1,1,1
+access_pkf_ac_relationship_person_partner,pkf.ac.relationship.person partner,model_pkf_ac_relationship_person,pkf_ac.group_pkf_ac_partner,1,1,1,1
+access_pkf_ac_relationship_person_admin,pkf.ac.relationship.person admin,model_pkf_ac_relationship_person,pkf_ac.group_pkf_ac_admin,1,1,1,1
+access_pkf_ac_media_research_user,pkf.ac.media.research user,model_pkf_ac_media_research,pkf_ac.group_pkf_ac_user,1,1,1,1
+access_pkf_ac_media_research_manager,pkf.ac.media.research manager,model_pkf_ac_media_research,pkf_ac.group_pkf_ac_manager,1,1,1,1
+access_pkf_ac_media_research_senior_manager,pkf.ac.media.research senior manager,model_pkf_ac_media_research,pkf_ac.group_pkf_ac_senior_manager,1,1,1,1
+access_pkf_ac_media_research_partner,pkf.ac.media.research partner,model_pkf_ac_media_research,pkf_ac.group_pkf_ac_partner,1,1,1,1
+access_pkf_ac_media_research_admin,pkf.ac.media.research admin,model_pkf_ac_media_research,pkf_ac.group_pkf_ac_admin,1,1,1,1

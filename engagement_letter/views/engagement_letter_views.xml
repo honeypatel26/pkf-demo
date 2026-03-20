@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- SEARCH -->
+    <record id="view_engagement_letter_search" model="ir.ui.view">
+        <field name="name">engagement.letter.search</field>
+        <field name="model">engagement.letter</field>
+        <field name="arch" type="xml">
+            <search string="Engagement Letters">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="responsible_partner_id"/>
+                <field name="owner_id"/>
+                <field name="company_id"/>
+                <field name="state"/>
+                <filter string="Draft" name="filter_draft" domain="[('state','=','draft')]"/>
+                <filter string="Review" name="filter_review" domain="[('state','=','review')]"/>
+                <filter string="Approved" name="filter_approved" domain="[('state','=','approved')]"/>
+                <filter string="Sent" name="filter_sent" domain="[('state','=','sent')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- LIST -->
+    <record id="view_engagement_letter_list" model="ir.ui.view">
+        <field name="name">engagement.letter.list</field>
+        <field name="model">engagement.letter</field>
+        <field name="arch" type="xml">
+            <list string="Engagement Letters">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="responsible_partner_id"/>
+                <field name="owner_id"/>
+                <field name="company_id"/>
+                <field name="state"/>
+                <field name="sign_request_state" optional="hide"/>
+                <button name="action_resend_sign_request" 
+                        string="Resend" 
+                        type="object" 
+                        icon="fa-refresh"
+                        invisible="sign_request_state != 'sent'"/>
+                <button name="action_download_signed_document" 
+                        string="Download" 
+                        type="object" 
+                        icon="fa-download"
+                        invisible="sign_request_state != 'signed'"/>
+                <field name="sale_order_count" string="SO Count" optional="show"/>
+                <button name="action_view_sale_orders"
+                        string="View Orders"
+                        type="object"
+                        icon="fa-shopping-cart"
+                        invisible="sale_order_count == 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record id="view_engagement_letter_form" model="ir.ui.view">
+        <field name="name">engagement.letter.form</field>
+        <field name="model">engagement.letter</field>
+        <field name="arch" type="xml">
+            <form string="Engagement Letter">
+                <header>
+
+                    <!-- Draft: обычный пользователь/создатель может отправить партнеру (но не сам партнер) -->
+                    <button name="action_send_to_partner"
+                            type="object"
+                            string="Send to Partner"
+                            class="btn-primary"
+                            invisible="state != 'draft' or responsible_partner_id == uid"/>
+
+                    <!-- Preview PDF всегда -->
+                    <button name="action_preview_pdf"
+                            type="object"
+                            string="Preview PDF"
+                            class="btn-secondary"/>
+
+                    <!-- Review: только responsible partner -->
+                    <button name="action_partner_approve"
+                            type="object"
+                            string="Approve"
+                            class="btn-primary"
+                            invisible="state != 'review' or responsible_partner_id != uid"/>
+
+                    <button name="action_send_for_sign"
+                            type="object"
+                            string="Send for Signature"
+                            class="btn-primary"
+                            invisible="state != 'approved'"/>
+
+                    <button name="action_create_sale_order"
+                            type="object"
+                            string="Create Sale Order"
+                            class="btn-secondary"
+                            invisible="state != 'approved'"/>
+
+                    <button name="action_mark_sent_to_client"
+                            type="object"
+                            string="Mark Sent to Client"
+                            class="btn-secondary"
+                            invisible="state != 'approved'"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,review,approved,sent"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_sign_requests"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil"
+                                invisible="sign_request_count == 0">
+                            <field name="sign_request_count" widget="statinfo" string="Signed"/>
+                        </button>
+                        <button name="action_view_sale_orders"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-dollar"
+                                invisible="sale_order_count == 0">
+                            <field name="sale_order_count" widget="statinfo" string="Sales"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" class="oe_inline"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="responsible_partner_id"/>
+                            <field name="owner_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="currency_id"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="block_ids" nolabel="1">
+                            <list>
+                                <field name="sequence" widget="handle"/>
+                                <field name="template_id" options="{'no_open': True, 'no_create': True}"/>
+                            </list>
+
+                            <form string="Template" create="0">
+                                <header>
+                                    <button name="action_update_original_template"
+                                            type="object"
+                                            string="Update Original Template"
+                                            confirm="Are you sure you want to overwrite the original template with these changes?"
+                                            class="btn-secondary"/>
+                                </header>
+                                <sheet>
+                                    <field name="letter_id" invisible="1"/>
+                                    <group>
+                                        <field name="template_id" options="{'no_open': True, 'no_create': True}"/>
+                                        <field name="title"/>
+                                    </group>
+
+                                    <notebook>
+                                        <page string="Text">
+                                            <field name="description" widget="html"/>
+                                        </page>
+
+                                        <page string="Lines">
+                                            <field name="line_ids">
+                                                <list editable="bottom">
+                                                    <field name="name"/>
+                                                    <field name="product_id"/>
+                                                    <field name="product_uom_qty"/>
+                                                    <field name="product_uom_id"/>
+                                                    <field name="price_unit"/>
+                                                    <field name="discount"/>
+                                                    <field name="price_subtotal" readonly="1"/>
+                                                    <field name="tax_id" widget="many2many_tags"/>
+                                                    <field name="price_total" readonly="1"/>
+                                                </list>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACTION (жёстко прибиваем нужные views) -->
+    <record id="action_engagement_letters" model="ir.actions.act_window">
+        <field name="name">Letters</field>
+        <field name="res_model">engagement.letter</field>
+        <field name="view_mode">list,form</field>
+        <field name="views" eval="[
+            (ref('view_engagement_letter_list'), 'list'),
+            (ref('view_engagement_letter_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_engagement_letter_search"/>
+    </record>
+
+</odoo>

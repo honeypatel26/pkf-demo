@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_calendar_event_form_inherit_event" model="ir.ui.view">
+        <field name="name">calendar.event.form.inherit.event</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_event"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-ticket"
+                        invisible="not event_id">
+                    <field name="event_id" invisible="1"/>
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Event</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

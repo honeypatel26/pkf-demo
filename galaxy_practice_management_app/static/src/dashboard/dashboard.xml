@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="galaxy_practice_management_app.UnifiedDashboard">
+        <div class="o_unified_dashboard h-100 overflow-auto" style="padding: 20px;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <t t-foreach="leftColumn" t-as="action" t-key="action.name">
+                        <DashboardItem action="action" />
+                    </t>
+                </div>
+                <div class="col-lg-6">
+                    <t t-foreach="rightColumn" t-as="action" t-key="action.name">
+                        <DashboardItem action="action" />
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="galaxy_practice_management_app.DashboardItem">
+        <div class="card mb-3 o_dashboard_item" style="height: 400px; display: flex; flex-direction: column;">
+            <div class="card-header">
+                <h5 class="card-title mb-0"><t t-esc="title"/></h5>
+            </div>
+            <div class="card-body p-0 overflow-hidden" style="flex: 1; position: relative;">
+                <t t-if="isValid and viewProps">
+                     <View t-props="viewProps" />
+                </t>
+                <div t-else="" class="p-3 text-muted">
+                    Loading or Invalid Action...
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="res_partner_client_type_menu" name="Client Type"
+        action="client_contact.client_type_action" parent="contacts.res_partner_menu_config"
+        sequence="4"/>
+
+    <menuitem id="res_partner_division_menu" name="Division"
+        action="client_contact.division_action" parent="contacts.res_partner_menu_config"
+        sequence="4"/>
+
+    <menuitem id="res_partner_office_responsible_menu" name="Office Responsible"
+        action="client_contact.office_responsible_action" parent="contacts.res_partner_menu_config"
+        sequence="4"/>
+
+    <menuitem id="res_partner_department_menu" name="Department"
+        action="hr.hr_department_kanban_action" parent="contacts.res_partner_menu_config"
+        sequence="4"/>
+
+    <menuitem id="res_partner_regulator_menu" name="Regulator"
+        action="client_contact.regulator_action" parent="contacts.res_partner_menu_config"
+        sequence="4"/>
+    <menuitem id="res_partner_partner_menu" name="Partner"
+        action="client_contact.partner_action" parent="contacts.res_partner_menu_config"
+        sequence="4"/>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="regulator_view_form" model="ir.ui.view">
+        <field name="name">regulator.form</field>
+        <field name="model">regulator.regulator</field>
+        <field name="arch" type="xml">
+            <form string="Regulator">
+              <sheet>
+                  <group>
+                      <field name="name" string="Regulator"/>
+                  </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="regulator_list_view" model="ir.ui.view">
+        <field name="name">regulator.List</field>
+        <field name="model">regulator.regulator</field>
+        <field name="arch" type="xml">
+            <list string="Regulator">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="regulator_action" model="ir.actions.act_window">
+        <field name="name">Regulator</field>
+        <field name="res_model">regulator.regulator</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record
+            </p>
+        </field>
+    </record>
+</odoo>

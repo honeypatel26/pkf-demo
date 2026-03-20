@@ -1,0 +1,54 @@
+<odoo>
+
+    <record id="view_pkf_ac_evaluation_form_relationship" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form.relationship</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add Single Relationship Tab -->
+            <notebook position="inside">
+                <page string="Relationship" name="relationship_page">
+                    <group string="Relationship" name="relationship_group" col="12">
+                        <group name="relationship_group_left" colspan="4">
+                            <field name="customer_name" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="ownership_structure_file" filename="ownership_structure_file_name" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="other_documents_file" filename="other_documents_file_name" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group name="relationship_group_right" colspan="8">
+                            <field name="ownership_structure_description" readonly="state in ('done','done_locked','lost')"/>
+                            <field name="other_documents_description" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+
+                    <separator string="Key Management Personnel"/>
+                    <button name="action_research_customer" string="Research via AI" type="object" class="btn-primary" icon="fa-magic"/>
+                    <field name="key_management_ids" nolabel="1" context="{'default_type': 'key_management'}" readonly="state in ('done','done_locked','lost')">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="role"/>
+                            <field name="country_id"/>
+                            <field name="associated_companies"/>
+                            <field name="source_url" widget="url" text="Source" class="oe_link"/>
+                            <field name="type" column_invisible="True"/>
+                            <field name="evaluation_id" column_invisible="True"/>
+                        </list>
+                    </field>
+
+                    <separator string="Directors and their Associated Companies"/>
+                    <field name="director_ids" nolabel="1" context="{'default_type': 'director'}" readonly="state in ('done','done_locked','lost')">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="role"/>
+                            <field name="country_id"/>
+                            <field name="associated_companies"/>
+                            <field name="source_url" widget="url" text="Source" class="oe_link"/>
+                            <field name="type" column_invisible="True"/>
+                            <field name="evaluation_id" column_invisible="True"/>
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

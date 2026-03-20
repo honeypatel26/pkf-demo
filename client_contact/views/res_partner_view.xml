@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_form_inherit_custom_fields" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.custom.fields</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet/widget[@name='web_ribbon']" position="after">
+                <field name="status" widget="statusbar" options="{'clickable': true}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='industry_id']" position="replace"/>
+
+            <xpath expr="//sheet/notebook" position="inside">
+                <page name="summary" string="Summary">
+                    <group>
+                        <group>
+                            <field name="division_id"/>
+                            <field name="office_responsible_id"/>
+                            <field name="industry_id" invisible="not is_company"/>
+                        </group>
+
+                        <group>
+                            <field name="department_id"/>
+                            <field name="regulator_id"/>
+                            <field name="partner_ids" widget="many2many_tags"/>
+                            <field name="year_end"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+
+            <xpath expr="//field[@name='vat']" position="before">
+                <field name="business_number"/>
+                <field name="source"/>
+                <field name="client_ref"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+
+
+

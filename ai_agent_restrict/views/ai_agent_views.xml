@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ai_agent_form_inherit_restrict" model="ir.ui.view">
+        <field name="name">ai.agent.form.inherit.restrict</field>
+        <field name="model">ai.agent</field>
+        <field name="inherit_id" ref="ai_app.ai_agent_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[2]" position="after">
+                <group string="Access Control" name="access_control">
+                    <field name="visible_to_all"/>
+                    <field name="allowed_group_ids" widget="many2many_tags" invisible="visible_to_all"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- MENU ACCESS FOR ADMINISTRATOR -->
+    <menuitem id="ai_app.ai_menu_root" name="AI" groups="group_ai_agent_manager"/>
+
+</odoo>

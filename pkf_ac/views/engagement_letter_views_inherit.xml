@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_engagement_letter_form_inherit_ac" model="ir.ui.view">
+        <field name="name">engagement.letter.form.inherit.ac</field>
+        <field name="model">engagement.letter</field>
+        <field name="inherit_id" ref="engagement_letter.view_engagement_letter_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_ac_evaluation"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-check-square-o"
+                        invisible="not evaluation_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">A&amp;C Eval</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_engagement_letter_list_inherit_ac" model="ir.ui.view">
+        <field name="name">engagement.letter.list.inherit.ac</field>
+        <field name="model">engagement.letter</field>
+        <field name="inherit_id" ref="engagement_letter.view_engagement_letter_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='owner_id']" position="after">
+                <field name="evaluation_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

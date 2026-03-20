@@ -1,0 +1,11 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_client_type_user,access.client.type.user,model_client_type,base.group_user,1,1,1,0
+access_client_type_admin,access.client.type.admin,model_client_type,base.group_system,1,1,1,1
+access_division_division_user,access.division.division.user,model_division_division,base.group_user,1,1,1,0
+access_division_division_admin,access.division.division.admin,model_division_division,base.group_system,1,1,1,1
+access_office_responsible_user,access.office.responsible.user,model_office_responsible,base.group_user,1,1,1,0
+access_office_responsible_admin,access.office.responsible.admin,model_office_responsible,base.group_system,1,1,1,1
+access_regulator_regulator_user,access.regulator.regulator.user,model_regulator_regulator,base.group_user,1,1,1,0
+access_regulator_regulator_admin,access.regulator.regulator.admin,model_regulator_regulator,base.group_system,1,1,1,1
+access_partner_partner_user,access.partner.partner.user,model_partner_partner,base.group_user,1,1,1,0
+access_partner_partner_admin,access.partner.partner.admin,model_partner_partner,base.group_system,1,1,1,1

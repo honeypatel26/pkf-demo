@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pkf_ac_evaluation_form_tab_overview" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form.tab.overview</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='tab_overview']" position="inside">
+
+                <!-- 2: Potential (left) + Previous (right) -->
+                <group col="2">
+
+                    <!-- LEFT -->
+                    <group string="POTENTIAL UPCOMING ENGAGEMENT">
+                        <field name="overview_type_of_engagement"
+                               readonly="state in ('done','done_locked','lost')"/>
+                        <field name="overview_reason_for_engagement"
+                               readonly="state in ('done','done_locked','lost')"/>
+                        <field name="does_company_have_revenue"
+                               readonly="state in ('done','done_locked','lost')"/>
+                        <field name="does_company_have_itgc"
+                               readonly="state in ('done','done_locked','lost')"/>
+                    </group>
+
+                    <!-- RIGHT -->
+                    <group string="PREVIOUS ENGAGEMENT - NOT NEEDED FOR ACCEPTANCE EVALUATION">
+                        <field name="prev_new_or_continuing_client"
+                               readonly="state in ('done','done_locked','lost')"/>
+                        <field name="prev_type_of_engagement"
+                               readonly="state in ('done','done_locked','lost')"
+                               invisible="prev_new_or_continuing_client == 'new'"/>
+                        <field name="prev_reason_for_engagement"
+                               readonly="state in ('done','done_locked','lost')"
+                               invisible="prev_new_or_continuing_client == 'new'"/>
+                        <field name="has_revenue"
+                               readonly="state in ('done','done_locked','lost')"/>
+                    </group>
+
+                </group>
+
+                <!-- Engagement risk factors -->
+                <group string="ENGAGEMENT RISK FACTORS">
+                    <field name="search_new_emerging_risks"
+                           help="Make inquiries and perform web searches for any new or emerging engagement risks that would impact the decision to continue with this engagement. Keep an eye out for key words such as fraud, scam, scandal, crime, etc."
+                           readonly="state in ('done','done_locked','lost')"/>
+                </group>
+
+                <!-- GENERAL -->
+                <group string="GENERAL"
+                       col="2"
+                       invisible="engagement_type not in ('attestation','compilation')">
+
+                    <group>
+                        <field name="nature_of_assignment"
+                               readonly="state in ('done','done_locked','lost')"/>
+                        <field name="period_covered_by_the_engagement"
+                               readonly="state in ('done','done_locked','lost')"/>
+                        <field name="relevant_auditing_framework"
+                               readonly="state in ('done','done_locked','lost')"/>
+                    </group>
+
+                    <group>
+                        <field name="type_of_attestation_work"
+                               readonly="state in ('done','done_locked','lost')"/>
+                        <field name="other_assignment_requested_performed"
+                               readonly="state in ('done','done_locked','lost')"/>
+                    </group>
+
+                </group>
+
+                <!-- QA MANUAL / DATA / COMPETENCIES / etc (text fields) -->
+                <group string="QUALITY ASSURANCE MANUAL">
+                    <field name="qa_accepting_contravene_firm" nolabel="0"
+                           readonly="state in ('done','done_locked','lost')"/>
+                </group>
+
+                <group string="UNAVAILABLE OR UNRELIABLE DATA">
+                    <field name="data_unavailable_or_unreliable" nolabel="0"
+                           readonly="state in ('done','done_locked','lost')"/>
+                </group>
+
+                <group string="FIRM COMPETENCIES">
+                    <field name="staff_resources_availability_expertise" nolabel="0"
+                           readonly="state in ('done','done_locked','lost')"/>
+                    <field name="external_expertise_necessity" nolabel="0"
+                           readonly="state in ('done','done_locked','lost')"/>
+                    <field name="need_for_eqcr_where_required" nolabel="0"
+                           readonly="state in ('done','done_locked','lost')"/>
+                </group>
+
+                <group string="SIGNED ENGAGEMENT LETTER">
+                    <field name="check_for_updated_engagement_letter" nolabel="0"
+                           readonly="state in ('done','done_locked','lost')"/>
+                </group>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

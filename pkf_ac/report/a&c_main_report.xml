@@ -1,0 +1,1949 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_ac_main_report" model="ir.actions.report">
+        <field name="name">A&amp;C Main Report</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pkf_ac.ac_main_report</field>
+        <field name="report_file">pkf_ac.ac_main_report</field>
+        <field name="binding_model_id" ref="model_pkf_ac_evaluation"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="ac_main_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+
+                    <!-- HEADER -->
+                    <h2 style="font-size:35px; margin-bottom:15px; background:#003366; color:white; padding:10px;">
+                        Acceptance &amp; Continuance Evaluation
+                    </h2>
+
+
+                    <!-- TWO COLUMN SUMMARY -->
+                    <table class="table table-bordered mb64" style="width:100%; border:2px solid #000;">
+                        <tr>
+
+                            <!-- LEFT COLUMN -->
+                            <td style="width:60%; vertical-align:top; padding:15px; line-height:1.5;">
+
+                                <p>
+                                    <strong style="font-size:19px;">Engagement Risk:</strong>
+                                    <span t-field="o.engagement_risk"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Evaluation Type:</strong>
+                                    <span t-field="o.evaluation_type"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Engagement Type:</strong>
+                                    <span t-field="o.engagement_type"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Engagement Name:</strong>
+                                    <span t-field="o.engagement_id"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Client:</strong>
+                                    <span t-field="o.client_id"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Major Relationships:</strong>
+                                    <span t-field="o.major_relationships"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Client Since:</strong>
+                                    <span t-field="o.client_since"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Industry:</strong>
+                                    <span t-field="o.industry"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Main Operations:</strong>
+                                    <span t-field="o.main_operations"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Engagement Partner:</strong>
+                                    <span t-field="o.engagement_partner_id"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Partner Since:</strong>
+                                    <span t-field="o.partner_since"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Type of Organization:</strong>
+                                    <span t-field="o.type_of_organization"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Manager Assigned:</strong>
+                                    <span t-field="o.manager_assigned_id"/>
+                                </p>
+
+                            </td>
+
+                            <!-- RIGHT COLUMN -->
+                            <td style="width:50%; vertical-align:top; padding:15px; line-height:1.5;">
+
+
+                                <p>
+                                    <strong style="font-size:19px;">Assignees:</strong>
+                                    <br/>
+                                    <t t-foreach="o.assignee_ids" t-as="u">
+                                        <span t-esc="u.name"/>
+                                        <br/>
+                                    </t>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">PKF Office:</strong>
+                                    <span t-field="o.pkf_office_id"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Deadline for Completion:</strong>
+                                    <span t-field="o.deadline_for_completion"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Stock Exchange:</strong>
+                                    <span t-field="o.stock_exchange"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Location of Stock Exchange:</strong>
+                                    <span t-field="o.location_of_stock_exchange"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Client's Stock Symbol:</strong>
+                                    <span t-field="o.client_stock_symbol"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Market Capitalization:</strong>
+                                    <span t-field="o.market_capitalization"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Reporting Currency:</strong>
+                                    <span t-field="o.currency_id"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Financial Reporting Framework:</strong>
+                                    <span t-field="o.financial_reporting_framework_id.name"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Auditing Standards Used:</strong>
+                                    <span t-field="o.auditing_standards_used_id.name"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Year End:</strong>
+                                    <span t-field="o.year_end_date"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">EQCR Needed:</strong>
+                                    <span t-field="o.eqcr_needed"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">SEC Registrant:</strong>
+                                    <span t-field="o.sec_registrant"/>
+                                </p>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="border:1px solid #000; margin:25px 0;"/>
+
+
+                    <!-- NEW SECTIONS (OVERVIEWS) -->
+
+                    <table class="table table-bordered mb64" style="width:100%; border:2px solid #000;">
+
+                        <tr>
+
+                            <!-- LEFT COLUMN -->
+                            <td style="width:50%; vertical-align:top; padding:15px;">
+
+                                <h2 style="font-size:35px; margin-bottom:15px; background:#003366; color:white; padding:10px;">
+                                    OVERVIEWS
+                                </h2>
+
+
+                                <h3 style="font-size:22px; margin-top:25px; margin-bottom:10px; border-bottom:2px solid #003366; padding-bottom:5px;">
+                                    POTENTIAL UPCOMING ENGAGEMENT
+                                </h3>
+
+
+                                <p>
+                                    <strong style="font-size:19px;">1.1 Type of Engagement:</strong>
+                                    <span t-field="o.overview_type_of_engagement"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.2 Reason for Engagement:</strong>
+                                    <span t-field="o.overview_reason_for_engagement"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Does the company have a revenue?</strong>
+                                    <span t-field="o.does_company_have_revenue"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Does the company have an ITGC?</strong>
+                                    <span t-field="o.does_company_have_itgc"/>
+                                </p>
+
+                                <h3 style="font-size:22px; margin-top:25px; margin-bottom:10px; border-bottom:2px solid #003366; padding-bottom:5px;">
+                                    PREVIOUS ENGAGEMENT - NOT NEEDED FOR ACCEPTANCE EVALUATION
+                                </h3>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.5 New or Continuing Client:</strong>
+                                    <span t-field="o.prev_new_or_continuing_client"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.6 Type of Engagement:</strong>
+                                    <span t-field="o.prev_type_of_engagement"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.7 Reason for Engagement:</strong>
+                                    <span t-field="o.prev_reason_for_engagement"/>
+                                </p>
+
+                                <h3 style="font-size:22px; margin-top:25px; margin-bottom:10px; border-bottom:2px solid #003366; padding-bottom:5px;">
+                                    GENERAL
+                                </h3>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.17 Nature of assignment:</strong>
+                                    <span t-field="o.nature_of_assignment"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.18 Period covered by the engagement:</strong>
+                                    <span t-field="o.period_covered_by_the_engagement"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.19 Relevant auditing framework:</strong>
+                                    <span t-field="o.relevant_auditing_framework"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">1.21 Other assignment requested / performed:
+                                    </strong>
+                                    <span t-field="o.other_assignment_requested_performed"/>
+                                </p>
+
+                            </td>
+
+                            <!-- RIGHT COLUMN -->
+                            <td style="width:50%; vertical-align:top; padding:15px;">
+
+                                <h3 style="font-size:22px; margin-top:35px; margin-bottom:10px; border-bottom:2px solid #003366; padding-bottom:5px;">
+                                    QUALITY ASSURANCE MANUAL
+                                </h3>
+
+                                <p>
+                                    <strong style="font-size:19px;">Accepting engagement would contravene firm
+                                        policies?
+                                    </strong>
+                                    <span t-field="o.qa_accepting_contravene_firm"/>
+                                </p>
+
+                                <h3 style="font-size:22px; margin-top:25px; margin-bottom:10px;">
+                                    UNAVAILABLE OR UNRELIABLE DATA
+                                </h3>
+
+                                <p>
+                                    <strong style="font-size:19px;">Unavailable or unreliable data:</strong>
+                                    <span t-field="o.data_unavailable_or_unreliable"/>
+                                </p>
+
+                                <h3 style="font-size:22px; margin-top:25px; margin-bottom:10px; border-bottom:2px solid #003366; padding-bottom:5px;">
+                                    FIRM COMPETENCIES
+                                </h3>
+
+                                <p>
+                                    <strong style="font-size:19px;">Staff resources availability / expertise:</strong>
+                                    <span t-field="o.staff_resources_availability_expertise"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">External expertise necessity:</strong>
+                                    <span t-field="o.external_expertise_necessity"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Need for EQCR where required:</strong>
+                                    <span t-field="o.need_for_eqcr_where_required"/>
+                                </p>
+
+                                <h3 style="font-size:22px; margin-top:25px; margin-bottom:10px; border-bottom:2px solid #003366; padding-bottom:5px;">
+                                    SIGNED ENGAGEMENT LETTER
+                                </h3>
+
+                                <p>
+                                    <strong style="font-size:19px;">Check for updated engagement letter:</strong>
+                                    <span t-field="o.check_for_updated_engagement_letter"/>
+                                </p>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="border:1px solid #000; margin:25px 0;"/>
+
+
+                    <!-- TREND RESEARCH -->
+
+                    <h3 style="font-size:25px; margin-top:25px; margin-bottom:10px;background:#003366; color:white; padding:10px;">
+                        TREND RESEARCH
+                    </h3>
+
+                    <t t-if="o.new_page_lines_ids">
+                        <t t-foreach="o.new_page_lines_ids" t-as="line">
+
+                            <table style="width:100%; border:1px solid #000; margin-bottom:20px; border-collapse:collapse;">
+                                <tr>
+
+                                    <td style="width:50%; vertical-align:top; padding:10px; border-right:1px solid #000;">
+                                        <p>
+                                            <strong style="font-size:19px;">Name:</strong>
+                                            <span t-field="line.name"/>
+                                        </p>
+
+
+                                        <p>
+                                            <strong style="font-size:19px;">Description:</strong>
+                                            <span t-field="line.description"/>
+                                        </p>
+                                    </td>
+
+                                    <td style="width:50%; vertical-align:top; padding:10px;">
+                                        <p>
+                                            <strong style="font-size:19px;">Uploaded File:</strong>
+                                            <t t-if="line.result_file">
+                                                <span t-esc="line.file_name"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span>No file uploaded</span>
+                                            </t>
+                                        </p>
+
+
+                                        <p>
+                                            <strong style="font-size:19px;">Evaluation:</strong>
+                                            <span t-field="line.evaluation_id"/>
+                                        </p>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </t>
+                    </t>
+
+                    <t t-if="not o.new_page_lines_ids">
+                        <p style="padding:10px; color:#666;">
+                            No trend research records available.
+                        </p>
+                    </t>
+
+
+                    <!-- BUDGET SECTION -->
+
+
+                    <h2 style="font-size:35px; margin-top:40px; margin-bottom:15px; background:#003366; color:white; padding:10px;">
+                        BUDGET
+                    </h2>
+
+                    <!-- CURRENT BUDGET -->
+
+                    <h3 style="font-size:25px; margin-top:25px; margin-bottom:10px; background:#003366; color:white; padding:10px;">
+                        CURRENT BUDGET
+                    </h3>
+
+                    <table style="width:100%; border:1px solid #000; margin-bottom:20px; border-collapse:collapse;">
+
+                        <!-- Info Row -->
+                        <tr>
+                            <td style="padding:10px; width:50%; text-align:left; vertical-align:top;" colspan="3">
+                                <p style="margin:0; padding:0;">
+                                    <strong style="font-size:19px;">Uploaded File:</strong>
+                                    <t t-if="o.current_budget_file_name">
+                                        <span t-esc="o.current_budget_file_name"/>
+                                    </t>
+                                    <t t-else="">No file uploaded</t>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Discount:</strong>
+                                    <span t-field="o.current_budget_discount"/>
+                                </p>
+                            </td>
+                            <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+
+                            <td style="padding:10px; width:50%;border-left:1px solid #000;" colspan="3">
+                                <p>
+                                    <strong style="font-size:19px;">Total Hours:</strong>
+                                    <span t-field="o.current_total_hours"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Total Billable:</strong>
+                                    <span t-field="o.current_total_billable"/>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <!-- Table Header -->
+                        <tr>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Job Position</td>
+                            <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Hourly Rate</td>
+                            <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Hours</td>
+                            <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Billable Amount</td>
+                        </tr>
+
+                        <!-- Budget Lines -->
+                        <t t-foreach="o.current_budget_line_ids" t-as="line">
+                            <tr>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.job_position_id"/>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.hourly_rate"/>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.hours"/>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.billable_amount"/>
+                                </td>
+                            </tr>
+                        </t>
+
+                    </table>
+
+
+                    <!-- PRIOR BUDGET -->
+
+
+                    <h3 style="font-size:25px; margin-top:25px; margin-bottom:10px; background:#003366; color:white; padding:10px;">
+                        PRIOR BUDGET
+                    </h3>
+
+                    <table style="width:100%; border:1px solid #000; margin-bottom:20px; border-collapse:collapse;">
+
+                        <!-- Info Row -->
+                        <tr>
+
+                            <td style="padding:10px; width:50%; text-align:left; vertical-align:top;" colspan="3">
+
+                                <p style="margin:0; padding:0;">
+                                    <strong style="font-size:19px;">Uploaded File:</strong>
+                                    <t t-if="o.prior_budget_file_name">
+                                        <span t-esc="o.prior_budget_file_name"/>
+                                    </t>
+                                    <t t-else="">No file uploaded</t>
+                                </p>
+
+                                <p style="margin:0; padding:0;">
+                                    <strong style="font-size:19px;">Discount:</strong>
+                                    <span t-field="o.prior_budget_discount"/>
+                                </p>
+                            </td>
+
+                            <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+
+
+                            <td style="padding:10px; width:50%;border-left:1px solid #000;" colspan="3">
+                                <p>
+                                    <strong style="font-size:19px;">Total Hours:</strong>
+                                    <span t-field="o.prior_total_hours"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Total Billable:</strong>
+                                    <span t-field="o.prior_total_billable"/>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <!-- Table Header -->
+                        <tr>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;height:100%;">Job Position
+                            </td>
+                            <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;height:100%;">Hourly Rate</td>
+                            <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;height:100%;">Hours</td>
+                            <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;height:100%;">Billable
+                                Amount
+                            </td>
+                        </tr>
+
+                        <!-- Budget Lines -->
+                        <t t-foreach="o.prior_budget_line_ids" t-as="line">
+                            <tr>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.job_position_id"/>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.hourly_rate"/>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.hours"/>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.billable_amount"/>
+                                </td>
+                            </tr>
+                        </t>
+
+                    </table>
+
+
+                    <!-- ACTUAL BUDGET -->
+
+                    <h3 style="font-size:25px; margin-top:25px; margin-bottom:10px; background:#003366; color:white; padding:10px;">
+                        ACTUAL
+                    </h3>
+
+                    <table style="width:100%; border:1px solid #000; margin-bottom:20px; border-collapse:collapse;">
+
+                        <!-- Info Row -->
+                        <tr>
+                            <td style="padding:10px; width:50%; text-align:left; vertical-align:top;" colspan="3">
+                                <p style="margin:0; padding:0;">
+                                    <strong style="font-size:19px;">Uploaded File:</strong>
+                                    <t t-if="o.prior_actual_file_name">
+                                        <span t-esc="o.prior_actual_file_name"/>
+                                    </t>
+                                    <t t-else="">No file uploaded</t>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Discount:</strong>
+                                    <span t-field="o.prior_actual_discount"/>
+                                </p>
+                            </td>
+                            <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+
+
+                            <td style="padding:10px; width:50%;border-left:1px solid #000;" colspan="3">
+                                <p>
+                                    <strong style="font-size:19px;">Total Hours:</strong>
+                                    <span t-field="o.prior_actual_total_hours"/>
+                                </p>
+
+                                <p>
+                                    <strong style="font-size:19px;">Total Billable:</strong>
+                                    <span t-field="o.prior_actual_total_billable"/>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <!-- Table Header -->
+                        <tr>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Job Position</td>
+                            <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Hourly Rate</td>
+                            <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Hours</td>
+                            <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+                            <td style="padding:8px; border-top:1px solid #000;height:100%;">Billable Amount</td>
+                        </tr>
+
+                        <!-- Budget Lines -->
+                        <t t-foreach="o.prior_actual_line_ids" t-as="line">
+                            <tr>
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.job_position_id"/>
+                                    <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.hourly_rate"/>
+                                    <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+                                </td>
+
+
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.hours"/>
+                                    <td style="width:5px; border-left:1px solid #000;">&#160;</td>
+
+                                </td>
+
+                                <td style="padding:8px; border-top:1px solid #000;">
+                                    <span t-field="line.billable_amount"/>
+                                </td>
+                            </tr>
+                        </t>
+
+                    </table>
+
+
+                    <!-- COMPARISON SECTION -->
+
+                    <h3 style="font-size:25px; margin-top:25px; margin-bottom:10px; background:#003366; color:white; padding:10px;">
+                        PRIOR ACTUAL vs PRIOR BUDGET (COMPARISON)
+                    </h3>
+
+                    <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+                        <tr>
+                            <td style="padding:10px; width:50%; border-right:1px solid #000;" colspan="2">
+                                <p>
+                                    <strong style="font-size:19px;">Difference ($):</strong>
+                                    <span t-field="o.prior_budget_difference_amount"/>
+                                </p>
+                            </td>
+
+                            <td style="padding:10px; width:50%;border-left:1px solid #000;" colspan="2">
+                                <p>
+                                    <strong style="font-size:19px;">Difference (%):</strong>
+                                    <span t-field="o.prior_budget_difference_percent"/>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="border:1px solid #000; margin:25px 0;"/>
+
+
+                    <!-- RISK PANEL SECTION -->
+
+
+                    <h3 style="font-size:25px; margin-top:25px; margin-bottom:10px; background:#003366; color:white; padding:10px;">
+                        RISK PANEL
+                    </h3>
+
+                    <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+
+                        <!-- Review Type + Risk Score -->
+                        <tr>
+                            <td style="padding:10px; width:50%; border-right:1px solid #000; border-bottom:1px solid #000;">
+                                <p>
+                                    <strong style="font-size:19px;">Review Type:</strong>
+                                    <span t-field="o.select_review_type"/>
+                                </p>
+                            </td>
+
+                            <td style="padding:10px; width:50%; border-bottom:1px solid #000;">
+                                <p>
+                                    <strong style="font-size:19px;">Risk Score:</strong>
+                                    <span t-field="o.risk_score"/>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <!-- Internal Members + External Member -->
+                        <tr>
+                            <td style="padding:10px; width:50%; border-right:1px solid #000; border-bottom:1px solid #000;">
+                                <p>
+                                    <strong style="front-size;19px;">Internal Members</strong>
+                                    <span t-field="o.committee_member_ids"/>
+                                </p>
+
+                            </td>
+                            <td style="padding:10px; width:50%; border-right:1px solid #000; border-bottom:1px solid #000;">
+                                <p>
+                                    <strong style="front-size;19px;">External Members</strong>
+                                    <span t-field="o.external_member"/>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" style="padding:10px; border-top:1px solid #000;">
+                                <p>
+                                    <strong style="font-size:19px;">Override Explanation / Reasoning:</strong>
+                                    <br/>
+                                    <t t-if="o.override_explanation_reasoning">
+                                        <span t-field="o.override_explanation_reasoning"/>
+                                    </t>
+                                    <t t-else="">N/A</t>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <hr style="border:1px solid #000; margin:25px 0;"/>
+
+
+                    <!-- RELATIONSHIP -->
+
+
+                    <h2 style="font-size:26px; margin-top:30px; margin-bottom:10px; background:#003366; color:white; padding:10px;">
+                        Relationship
+                    </h2>
+
+                    <!-- Customer Name -->
+                    <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+                        <tr>
+                            <td style="padding:10px; width:30%; border-right:1px solid #000;">
+                                <strong>Customer / Client:</strong>
+                            </td>
+                            <td style="padding:10px;">
+                                <span t-esc="o.customer_name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Ownership Structure -->
+                    <h3 style="font-size:20px; margin-top:20px;">Ownership Structure</h3>
+                    <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+                        <tr>
+                            <td style="padding:10px; width:30%; border-right:1px solid #000;">
+                                <strong>Uploaded File:</strong>
+                            </td>
+                            <td style="padding:10px;">
+                                <t t-if="o.ownership_structure_file">
+                                    <span t-esc="o.ownership_structure_file_name"/>
+                                </t>
+                                <t t-else="">No file uploaded</t>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:10px; border-right:1px solid #000;">
+                                <strong>Description:</strong>
+                            </td>
+                            <td style="padding:10px;">
+                                <span t-esc="o.ownership_structure_description"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Other Documents -->
+                    <h3 style="font-size:20px; margin-top:20px;">Other Documents</h3>
+                    <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+                        <tr>
+                            <td style="padding:10px; width:30%; border-right:1px solid #000;">
+                                <strong>Uploaded File:</strong>
+                            </td>
+                            <td style="padding:10px;">
+                                <t t-if="o.other_documents_file">
+                                    <span t-esc="o.other_documents_file_name"/>
+                                </t>
+                                <t t-else="">No file uploaded</t>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:10px; border-right:1px solid #000;">
+                                <strong>Description:</strong>
+                            </td>
+                            <td style="padding:10px;">
+                                <span t-esc="o.other_documents_description"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Key Management Personnel -->
+                    <h3 style="font-size:20px; margin-top:20px;">Key Management Personnel</h3>
+                    <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+                        <tr>
+                            <th style="padding:8px;">Name</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Role</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Associated Companies</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Country</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Source</th>
+                        </tr>
+
+
+                        <t t-if="o.key_management_ids">
+                            <t t-foreach="o.key_management_ids" t-as="km">
+                                <tr>
+                                    <td style="padding:8px;">
+                                        <span t-esc="km.name"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="km.role"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="km.associated_companies"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="km.country_id.name"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="km.source_url"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                        </t>
+                        <t t-else="">
+                            <tr>
+                                <td colspan="5" style="padding:8px;">No key management personnel found</td>
+                            </tr>
+                        </t>
+                    </table>
+
+                    <!-- Directors -->
+                    <h3 style="font-size:20px; margin-top:20px;">Directors</h3>
+                    <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+                        <tr>
+                            <th style="padding:8px;">Name</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Role</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Associated Companies</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Country</th>
+                            <th style="width:1px; border-left:1px solid #000;">&#160;</th>
+
+                            <th style="padding:8px;">Source</th>
+                        </tr>
+
+
+                        <t t-if="o.director_ids">
+                            <t t-foreach="o.director_ids" t-as="dr">
+                                <tr>
+                                    <td style="padding:8px;">
+                                        <span t-esc="dr.name"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="dr.role"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="dr.associated_companies"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="dr.country_id.name"/>
+                                    </td>
+                                    <td style="width:1px; border-left:1px solid #000;">&#160;</td>
+
+                                    <td style="padding:8px;">
+                                        <span t-esc="dr.source_url"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                        </t>
+                        <t t-else="">
+                            <tr>
+                                <td colspan="5" style="padding:8px;">No directors found</td>
+                            </tr>
+                        </t>
+                    </table>
+
+                    <hr style="border:1px solid #000; margin:25px 0;"/>
+
+
+                    <!-- MEDIA RESEARCH -->
+
+                    <h2 style="font-size:26px; margin-top:30px; margin-bottom:10px; background:#003366; color:white; padding:10px;">
+                        Media Research Findings
+                    </h2>
+
+                    <t t-if="o.media_research_ids">
+                        <table style="width:100%; border:1px solid #000; border-collapse:collapse; margin-bottom:20px;">
+                            <tr style="background:#003366; color:white;">
+                                <th style="padding:8px; width:10%; border:1px solid #000;">Reception</th>
+                                <th style="padding:8px; width:20%; border:1px solid #000;">Title</th>
+                                <th style="padding:8px; width:25%; border:1px solid #000;">Description</th>
+                                <th style="padding:8px; width:25%; border:1px solid #000;">Comment / Analysis</th>
+                                <th style="padding:8px; width:10%; border:1px solid #000;">Date</th>
+                                <th style="padding:8px; width:10%; border:1px solid #000;">Source</th>
+                            </tr>
+
+                            <t t-foreach="o.media_research_ids" t-as="mr">
+                                <tr>
+
+                                    <!-- Reception -->
+                                    <td style="padding:8px; border:1px solid #000;">
+                                        <t t-if="mr.reception == 'positive'">
+                                            <span style="color:green; font-weight:bold;">Positive</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="color:red; font-weight:bold;">Negative</span>
+                                        </t>
+                                    </td>
+
+                                    <!-- Title -->
+                                    <td style="padding:8px; border:1px solid #000;">
+                                        <span t-esc="mr.title"/>
+                                    </td>
+
+                                    <!-- Description -->
+                                    <td style="padding:8px; border:1px solid #000;">
+                                        <span t-esc="mr.description"/>
+                                    </td>
+
+                                    <!-- Analysis -->
+                                    <td style="padding:8px; border:1px solid #000;">
+                                        <span t-esc="mr.analysis"/>
+                                    </td>
+
+                                    <!-- Date -->
+                                    <td style="padding:8px; border:1px solid #000;">
+                                        <span t-esc="mr.date"/>
+                                    </td>
+
+                                    <!-- Source -->
+                                    <td style="padding:8px; border:1px solid #000;">
+                                        <span t-esc="mr.source"/>
+                                    </td>
+
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+
+                    <t t-else="">
+                        <p>No media research findings available.</p>
+                    </t>
+
+                    <hr style="border:1px solid #000; margin:25px 0;"/>
+
+
+                    <!-- RISK ANALYSIS -->
+
+                    <div t-if="o.engagement_type == 'audit'">
+
+                        <h2 style="font-size:26px; margin-top:30px; margin-bottom:10px;">
+                            Audit
+                        </h2>
+
+                        <table style="width:100%; border:1px solid #000; border-collapse:collapse;">
+                            <tr style="background:#003366; color:white;">
+                                <th style="padding:8px; width:40%;">Risk Item</th>
+                                <th style="padding:8px; width:40%;">Reasoning</th>
+                                <th style="padding:8px; width:60%;">Risk Level</th>
+                            </tr>
+
+                            <!-- 2.1 -->
+                            <tr>
+                                <td>2.1 Market Capitalization</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_1"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_1"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.2 -->
+                            <tr>
+                                <td>2.2 High-risk industries</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_2"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_2"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.3 -->
+                            <tr>
+                                <td>2.3 Unstable governments/countries</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_3"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_3"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.4 -->
+                            <tr>
+                                <td>2.4 Use of component practitioners</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_4"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_4"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.5 -->
+                            <tr>
+                                <td>2.5 Non-compliance with laws/regulations</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_5"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_5"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.6 -->
+                            <tr>
+                                <td>2.6 Potential material litigation</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_6"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_6"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.7 -->
+                            <tr>
+                                <td>2.7 Questionable management ethics</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_7"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_7"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.8 -->
+                            <tr>
+                                <td>2.8 Threat to independence</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_8"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_8"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.9 -->
+                            <tr>
+                                <td>2.9 High debt / poor cash flow</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_9"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_9"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.10 -->
+                            <tr>
+                                <td>2.10 Poor sales outlook / competition</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_10"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_10"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.11 -->
+                            <tr>
+                                <td>2.11 High debt levels</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_11"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_11"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.12 -->
+                            <tr>
+                                <td>2.12 Covenant or contractual violations</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_12"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_12"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.13 -->
+                            <tr>
+                                <td>2.13 High media/political interest</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_13"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_13"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.14 -->
+                            <tr>
+                                <td>2.14 Multiple locations / overseas</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_14"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_14"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.15 -->
+                            <tr>
+                                <td>2.15 Complex corporate structure</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_15"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_15"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.16 -->
+                            <tr>
+                                <td>2.16 Fast business growth</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_16"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_16"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.17 -->
+                            <tr>
+                                <td>2.17 Poor cooperation from management</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_17"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_17"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.18 -->
+                            <tr>
+                                <td>2.18 Poor control environment</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_18"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_18"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.19 -->
+                            <tr>
+                                <td>2.19 Limited industry experience</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_19"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_19"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.20 -->
+                            <tr>
+                                <td>2.20 Unrealistic reporting timeframes</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_20"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_20"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.21 -->
+                            <tr>
+                                <td>2.21 Complex accounting transactions</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_21"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_21"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.22 -->
+                            <tr>
+                                <td>2.22 Incompetent senior accounting staff</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_22"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_22"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.23 -->
+                            <tr>
+                                <td>2.23 Unwilling/unable to pay fair fee</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_23"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_23"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.24 -->
+                            <tr>
+                                <td>2.24 Poor/missing accounting systems</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_24"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_24"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.25 -->
+                            <tr>
+                                <td>2.25 Complex IT environment</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_25"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_25"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.26 -->
+                            <tr>
+                                <td>2.26 Use of external experts</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_26"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_26"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.27 -->
+                            <tr>
+                                <td>2.27 High estimation uncertainty</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_27"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_27"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.28 -->
+                            <tr>
+                                <td>2.28 Related-party transactions</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_28"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_28"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.29 -->
+                            <tr>
+                                <td>2.29 Aggressive accounting policies</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_29"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_29"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.30 -->
+                            <tr>
+                                <td>2.30 Significant adjustments required</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_30"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_30"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.31 -->
+                            <tr>
+                                <td>2.31 Unusual transactions</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_31"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_31"/>
+                                </td>
+                            </tr>
+
+                            <!-- 2.32 -->
+                            <tr>
+                                <td>2.32 Other (specify)</td>
+                                <td>
+                                    <span t-esc="o.risk_reasoning_32"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.risk_level_32"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                    <div t-if="o.engagement_type == 'review'">
+
+                        <h2 style="font-size:26px; margin-top:30px; margin-bottom:10px;">
+                            REVIEW
+                        </h2>
+
+                        <table style="width:100%; border:1px solid #000; border-collapse:collapse;">
+                            <tr style="background:#003366; color:white;">
+                                <th style="padding:8px; width:25%;">Risk Item</th>
+                                <th style="padding:8px; width:50%;">Reasoning</th>
+                            </tr>
+
+                            <!-- 2.33 -->
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    2.33 Quality assurance manual
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_33"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.34 Engagement risk factors
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_34"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.35 Engagement risk factors
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_35"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.36 Management’s integrity
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_36"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.37 Opening balance (ONLY FOR
+                                    ACCEPTANCE CLIENTS)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_37"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.38 Purpose of the review
+                                    engagements
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_38"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.39 Independence threats</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_39"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.40 Independence
+                                    prohibitions
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_40"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.41 Unavailable or unreliable
+                                    data
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_41"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.42 Firm competencies</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_42"/>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.43 Engagement preconditions
+                                    (a)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_43"/>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.44 Engagement preconditions
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_44"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.45 Signed engagement letter
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_45"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.46 EQCR recruitment</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_46"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.47 Conclusion (Risk Level)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o._REVIEW_RISK_LEVEL_SELECTION"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                    <div t-if="o.engagement_type == 'due_diligence'">
+
+                        <h2 style="font-size:26px; margin-top:30px; margin-bottom:10px;">
+                            Due Diligence
+                        </h2>
+
+                        <table style="width:100%; border:1px solid #000; border-collapse:collapse;">
+                            <tr style="background:#003366; color:white;">
+                                <th style="padding:8px; width:25%;">Risk Item</th>
+                                <th style="padding:8px; width:50%;">Reasoning</th>
+                            </tr>
+
+                            <!-- 2.48 -->
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.48 Quality assurance manual
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_48"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.49 Engagement risk factors
+                                    (a)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_49"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.50 Engagement risk factors
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_50"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.52 Purpose of the
+                                    engagements
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_52"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.54 Independence
+                                    prohibitions
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_54"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.56 Management’s integrity of
+                                    the engaging entity
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_56"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.57 Unavailable or unreliable
+                                    data
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_57"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.58 Firm competencies</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_58"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.67 Engagement preconditions
+                                    (a)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_67"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.68 Engagement preconditions
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_68"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.69 Signed engagement letter
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_69"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.70 Conclusion</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_level_70"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.70 Conclusion</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_level_70"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.71 Partner/Practitioner
+                                    assessment
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_partner_assessment_71"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div t-if="o.engagement_type == 'attestation'">
+
+                        <h2 style="font-size:26px; margin-top:30px; margin-bottom:10px;">
+                            Attestation (2.1 – 2.32)
+                        </h2>
+
+                        <table style="width:100%; border:1px solid #000; border-collapse:collapse;">
+                            <tr style="background:#003366; color:white;">
+                                <th style="padding:8px; width:25%;">Risk Item</th>
+                                <th style="padding:8px; width:50%;">Reasoning</th>
+                            </tr>
+
+                            <!-- 2.48 -->
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.48 Quality assurance manual
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_48"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.49 Engagement risk factors
+                                    (a)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_49"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.50 Engagement risk factors
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_50"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.53 Purpose of the
+                                    engagement
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_53"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.54 Independence
+                                    prohibitions
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_54"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.55 Independence threats</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_55"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.56 Management’s integrity of
+                                    the engaging entity
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_56"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.57 Unavailable or unreliable
+                                    data
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_57"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.58 Firm competencies</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_58"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.63 Engagement preconditions
+                                    (a)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_63"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.64 Engagement preconditions
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_64"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.65 Engagement preconditions
+                                    (c)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_65"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.66 Engagement preconditions
+                                    (d)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_66"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.69 Signed engagement letter
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_69"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.70 Conclusion</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_level_70"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.71 Partner/Practitioner
+                                    assessment
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_partner_assessment_71"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                    <div t-if="o.engagement_type == 'compilation'">
+
+                        <h2 style="font-size:26px; margin-top:30px; margin-bottom:10px;">
+                            Compilation
+                        </h2>
+
+                        <table style="width:100%; border:1px solid #000; border-collapse:collapse;">
+                            <tr style="background:#003366; color:white;">
+                                <th style="padding:8px; width:25%;">Risk Item</th>
+                                <th style="padding:8px; width:50%;">Reasoning</th>
+                            </tr>
+
+                            <!-- 2.48 -->
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.48 Quality assurance manual
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_48"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.57 Unavailable or unreliable
+                                    data
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_57"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.51 Engagement risk factors
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_51"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.53 Purpose of the
+                                    engagement
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_53"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.54 Independence
+                                    prohibitions
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_54"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.56 Management’s integrity of
+                                    the engaging entity
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_56"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.57 Unavailable or unreliable
+                                    data
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_57"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.59 Firm competencies</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_59"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.60 Engagement preconditions
+                                    (a)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_60"/>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.61 Engagement preconditions
+                                    (b)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_61"/>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.62 Engagement preconditions
+                                    (c)
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_62"/>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.69 Signed engagement letter
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_reasoning_69"/>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.70 Conclusion</td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_level_70"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">2.71 Partner/Practitioner
+                                    assessment
+                                </td>
+                                <td style="padding:10px 16px 10px 8px; line-height:1.4;">
+                                    <span t-esc="o.risk_partner_assessment_71"/>
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                </div>
+
+
+            </t>
+        </t>
+    </template>
+
+</odoo>

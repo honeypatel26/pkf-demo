@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="apply_inherit_pkf" inherit_id="website_hr_recruitment.apply" name="Apply Job Inherit PKF">
+        <xpath expr="//input[@name='Resume']" position="attributes">
+            <attribute name="accept">.pdf,application/pdf</attribute>
+        </xpath>
+    </template>
+</odoo>

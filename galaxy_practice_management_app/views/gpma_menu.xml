@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_galaxy_practice_management_app_root"
+              name="GPMA"
+              sequence="1"
+              web_icon="galaxy_practice_management_app,static/description/icon.png"
+              action="action_dashboard_client"/>
+
+    <!-- Dashboard -->
+    <menuitem id="menu_dashboard"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Dashboard"
+              action="action_dashboard_client"
+              sequence="0"/>
+
+    <!-- Contacts Submenu -->
+    <menuitem id="menu_contacts"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Contacts"
+              action="contacts.action_contacts"
+              sequence="10"/>
+
+    <menuitem id="menu_products_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Products"
+              sequence="20"/>
+
+    <menuitem id="menu_products"
+              parent="menu_products_root"
+              name="Products"
+              action="sale.product_template_action"
+              sequence="10"/>
+
+    <menuitem id="menu_products_categories"
+              parent="menu_products_root"
+              name="Products Categories"
+              action="product.product_category_action_form"
+              sequence="20"/>
+
+    <menuitem id="menu_products_uom"
+              parent="menu_products_root"
+              name="Units &amp; Packagings"
+              action="uom.product_uom_form_action"
+              sequence="30"/>
+
+    <menuitem id="menu_products_combo"
+              parent="menu_products_root"
+              name="Combo Choices"
+              action="product.product_combo_action"
+              sequence="40"/>
+
+    <menuitem id="menu_products_pricelist"
+              parent="menu_products_root"
+              name="Pricelist"
+              action="product.product_pricelist_action2"
+              sequence="50"/>
+
+    <menuitem id="menu_sign_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Sign"
+              sequence="30"/>
+
+    <menuitem id="menu_my_documents"
+              parent="menu_sign_root"
+              name="My Documents"
+              action="sign.sign_request_action"
+              sequence="10"/>
+
+    <menuitem id="menu_all_documents"
+              parent="menu_sign_root"
+              name="All Documents"
+              action="sign.sign_all_request_action"
+              sequence="20"/>
+
+    <menuitem id="menu_templates"
+              parent="menu_sign_root"
+              name="Templates"
+              sequence="30"/>
+
+    <menuitem id="menu_template"
+              parent="menu_templates"
+              name="Templates"
+              action="sign.sign_template_action"
+              sequence="10"/>
+
+    <menuitem id="menu_sign_config"
+              parent="menu_sign_root"
+              name="Configuration"
+              sequence="40"/>
+
+    <menuitem id="menu_sign_fields"
+              parent="menu_sign_config"
+              name="Signature Fields"
+              action="sign.sign_item_type_action"
+              sequence="10"/>
+
+    <menuitem id="menu_tags"
+              parent="menu_sign_config"
+              name="Tags"
+              action="sign.sign_template_tag_action"
+              sequence="20"/>
+
+
+    <!-- Document (PARENT ONLY – no action here)-->
+    <menuitem id="menu_document_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Document"
+              sequence="40"/>
+
+    <menuitem id="menu_document"
+              parent="menu_document_root"
+              name="Document"
+              action="documents.document_action"
+              sequence="10"/>
+
+    <!-- CRM (PARENT ONLY – no action here)-->
+    <menuitem id="menu_crm_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="CRM"
+              sequence="50"/>
+
+    <!-- CRM → CRM -->
+    <menuitem id="menu_crm"
+              parent="menu_crm_root"
+              name="CRM"
+              action="crm.crm_lead_action_pipeline"
+              sequence="10"/>
+
+    <!-- Projects → Tasks -->
+    <menuitem id="menu_crm_teams"
+              parent="menu_crm_root"
+              name="Sales Teams"
+              action="sales_team.crm_team_action_config"
+              sequence="20"/>
+
+    <!-- Projects (PARENT ONLY – no action here) -->
+    <menuitem id="menu_projects_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Projects"
+              sequence="60"/>
+
+    <!-- Projects → Projects -->
+    <menuitem id="menu_projects_projects"
+              parent="menu_projects_root"
+              name="Projects"
+              action="project.open_view_project_all"
+              sequence="10"/>
+
+    <!-- Projects → Tasks -->
+    <menuitem id="menu_projects_tasks"
+              parent="menu_projects_root"
+              name="Tasks"
+              action="project.action_view_task"
+              sequence="20"/>
+
+    <!-- Projects → All Tasks -->
+    <menuitem id="menu_projects_all_tasks"
+              parent="menu_projects_root"
+              name="All Tasks"
+              action="project.action_view_all_task"
+              sequence="30"/>
+
+    <!-- Sales Submenu -->
+    <menuitem id="menu_sales_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Sales"
+              sequence="70"/>
+
+    <menuitem id="menu_sales_quotations"
+              parent="menu_sales_root"
+              name="Quotations"
+              action="sale.action_quotations"
+              sequence="10"/>
+
+    <menuitem id="menu_sale_orders"
+              parent="menu_sales_root"
+              name="Orders"
+              action="sale.action_orders"
+              sequence="20"/>
+
+    <menuitem id="menu_sales_to_invoice_root"
+              parent="menu_sales_root"
+              name="To Invoice"
+              sequence="30"/>
+
+    <menuitem id="menu_sales_to_invoice"
+              parent="menu_sales_to_invoice_root"
+              name="Orders To Invoice"
+              action="sale.action_orders_to_invoice"
+              sequence="10"/>
+
+    <menuitem id="menu_sales_to_upsell"
+              parent="menu_sales_to_invoice_root"
+              name="Orders To Upsell"
+              action="sale.action_orders_upselling"
+              sequence="20"/>
+
+    <!-- Subscriptions (Parent Only – no action here) -->
+    <menuitem id="menu_subscriptions_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Subscriptions"
+              sequence="80"/>
+
+    <menuitem id="menu_subscriptions"
+              parent="menu_subscriptions_root"
+              name="Subscriptions"
+              action="sale_subscription.sale_subscription_action"
+              sequence="10"/>
+
+    <menuitem id="menu_subscriptions_quotations"
+              parent="menu_subscriptions_root"
+              name="Quotations"
+              action="sale_subscription.sale_subscription_action_quotes"
+              sequence="20"/>
+
+    <menuitem id="menu_subscriptions_to_renew"
+              parent="menu_subscriptions_root"
+              name="To Renew"
+              action="sale_subscription.sale_subscription_action_pending"
+              sequence="30"/>
+
+    <menuitem id="menu_subscriptions_upsell"
+              parent="menu_subscriptions_root"
+              name="Upsell"
+              action="sale_subscription.sale_subscription_action_upsell"
+              sequence="40"/>
+
+    <menuitem id="menu_recurring_plans_root"
+              parent="menu_subscriptions_root"
+              name="Recurring Plans"
+              sequence="50"/>
+
+    <menuitem id="menu_recurring_plans"
+              parent="menu_recurring_plans_root"
+              name="Recurring Plans"
+              action="sale_subscription.sale_subscription_plan_action"
+              sequence="10"/>
+
+
+    <!-- Timesheets (Parent Only – no action here) -->
+    <menuitem id="menu_helpdesk_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Helpdesk"
+              sequence="90"/>
+
+    <menuitem id="menu_helpdesk_overview"
+              parent="menu_helpdesk_root"
+              name="Overview"
+              action="helpdesk.helpdesk_team_dashboard_action_main"
+              sequence="10"/>
+
+    <menuitem id="menu_helpdesk_tickets"
+              parent="menu_helpdesk_root"
+              name="Helpdesk Tickets"
+              sequence="20"/>
+
+    <menuitem id="menu_my_tickets"
+              parent="menu_helpdesk_tickets"
+              name="My Tickets"
+              action="helpdesk.helpdesk_ticket_action_main_my"
+              sequence="10"/>
+
+    <menuitem id="menu_all_tickets"
+              parent="menu_helpdesk_tickets"
+              name="All Tickets"
+              action="helpdesk.helpdesk_ticket_action_main_tree"
+              sequence="20"/>
+
+    <menuitem id="menu_helpdesk_config"
+              parent="menu_helpdesk_root"
+              name="Configuration"
+              sequence="30"/>
+
+    <menuitem id="menu_helpdesk_team"
+              parent="menu_helpdesk_config"
+              name="Helpdesk Team"
+              action="helpdesk.helpdesk_team_action"
+              sequence="10"/>
+
+    <!-- Timesheets (Parent Only – no action here) -->
+    <menuitem id="menu_timesheets_root"
+              parent="menu_galaxy_practice_management_app_root"
+              name="Timesheets"
+              sequence="100"/>
+
+    <menuitem id="menu_my_timesheets"
+              parent="menu_timesheets_root"
+              name="My Timesheets"
+              action="hr_timesheet.act_hr_timesheet_line"
+              sequence="10"/>
+
+
+    <menuitem id="menu_all_timesheets"
+              parent="menu_timesheets_root"
+              name="All Timesheets"
+              action="hr_timesheet.timesheet_action_all"
+              sequence="20"/>
+
+
+    <menuitem id="menu_timesheet_to_validate"
+              parent="menu_timesheets_root"
+              name="Timesheets to Validate"
+              action="timesheet_grid.timesheet_grid_to_validate_all_timesheets_action"
+              sequence="30"/>
+
+    <!-- Reporting (Container Only) -->
+    <menuitem id="menu_timesheets_reporting_root"
+              parent="menu_timesheets_root"
+              name="Reporting"
+              sequence="40"/>
+
+
+    <menuitem id="menu_timesheet_by_employee"
+              parent="menu_timesheets_reporting_root"
+              name="Timesheets by Employee"
+              action="hr_timesheet.act_hr_timesheet_report"
+              sequence="10"/>
+
+
+    <menuitem id="menu_timesheet_by_project"
+              parent="menu_timesheets_reporting_root"
+              name="Timesheets by Project"
+              action="hr_timesheet.timesheet_action_report_by_project"
+              sequence="20"/>
+
+
+    <menuitem id="menu_timesheet_by_task"
+              parent="menu_timesheets_reporting_root"
+              name="Timesheets by Task"
+              action="hr_timesheet.timesheet_action_report_by_task"
+              sequence="30"/>
+
+    <menuitem id="menu_timesheet_by_billing_type"
+              parent="menu_timesheets_reporting_root"
+              name="Timesheets by Billing Type"
+              action="sale_timesheet.timesheet_action_billing_report"
+              sequence="40"/>
+
+</odoo>

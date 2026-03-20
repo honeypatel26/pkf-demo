@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pkf_ac_clients_list" model="ir.ui.view">
+        <field name="name">pkf.ac.clients.list</field>
+        <field name="model">crm.lead</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <list string="Clients">
+                <field name="partner_id" string="Client"/>
+                <field name="contact_name" string="Contact Person"/>
+                <field name="email_from" string="Email"/>
+                <field name="name" string="Engagement Opportunity"/>
+                <field name="user_id" string="Salesperson"/>
+                <field name="expected_revenue" string="Expected Revenue"/>
+                <field name="stage_id" string="Stage"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

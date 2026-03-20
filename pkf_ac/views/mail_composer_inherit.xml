@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_compose_message_wizard_form_inherit_ac" model="ir.ui.view">
+        <field name="name">mail.compose.message.form.inherit.ac</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+        <field name="arch" type="xml">
+            <!-- Force hide original "To" fields in mass_mail mode to prevent duplication -->
+            <xpath expr="//label[@for='partner_ids']" position="attributes">
+                <attribute name="invisible">composition_mode != 'comment' or subtype_is_log</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('d-flex')][field[@name='partner_ids']]" position="attributes">
+                <attribute name="invisible">composition_mode != 'comment' or subtype_is_log</attribute>
+            </xpath>
+
+            <!-- Add our custom editable field for mass_mail -->
+            <xpath expr="//field[@name='subject']" position="before">
+                <field name="ac_partner_ids" widget="many2many_tags"
+                       string="To"
+                       invisible="composition_mode != 'mass_mail' or model != 'pkf.ac.team.independence'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

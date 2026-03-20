@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_crm_lead_form_inherit_ac_tab" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.ac.tab</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Make Client (partner_id) required on the standard CRM form -->
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+
+            <!-- SMART BUTTON (top) -->
+            <xpath expr="//div[contains(@class,'oe_button_box')]" position="inside">
+                <button
+                    name="action_open_ac_evaluations"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-clipboard"
+                >
+                    <field name="ac_evaluation_count" widget="statinfo" string="A&amp;C"/>
+                </button>
+            </xpath>
+
+            <!-- A&C TAB: show same list view as A&C menu -->
+            <xpath expr="//notebook" position="inside">
+                <page string="A&amp;C" name="ac_tab">
+                    <group col="12">
+                        <group colspan="12">
+
+                            <field name="ac_evaluation_ids"
+                                   nolabel="1"
+                                   readonly="1"
+                                   context="{
+                                       'tree_view_ref': 'pkf_ac.view_pkf_ac_evaluation_tree',
+                                       'form_view_ref': 'pkf_ac.view_pkf_ac_evaluation_form'
+                                   }"
+                                   options="{'no_create': True, 'no_create_edit': True, 'no_delete': True}"/>
+
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

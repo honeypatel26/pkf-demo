@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Financial Reporting Frameworks -->
+    <record id="pkf_ac_framework_ifrs" model="pkf.ac.reporting.framework">
+        <field name="name">IFRS</field>
+    </record>
+    <record id="pkf_ac_framework_aspe" model="pkf.ac.reporting.framework">
+        <field name="name">ASPE</field>
+    </record>
+    <record id="pkf_ac_framework_us_gaap" model="pkf.ac.reporting.framework">
+        <field name="name">US GAAP</field>
+    </record>
+    <record id="pkf_ac_framework_asnpo" model="pkf.ac.reporting.framework">
+        <field name="name">ASNPO</field>
+    </record>
+
+    <!-- Auditing Standards -->
+    <record id="pkf_ac_standard_cas" model="pkf.ac.auditing.standard">
+        <field name="name">CAS</field>
+    </record>
+    <record id="pkf_ac_standard_pcaob" model="pkf.ac.auditing.standard">
+        <field name="name">PCAOB</field>
+    </record>
+    <record id="pkf_ac_standard_isa" model="pkf.ac.auditing.standard">
+        <field name="name">ISA</field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="job_pos_eqcr" model="pkf.ac.job.position">
+            <field name="name">EQCR</field>
+        </record>
+        <record id="job_pos_manager" model="pkf.ac.job.position">
+            <field name="name">Manager</field>
+        </record>
+        <record id="job_pos_senior" model="pkf.ac.job.position">
+            <field name="name">Senior Associate</field>
+        </record>
+        <record id="job_pos_associate" model="pkf.ac.job.position">
+            <field name="name">Associate</field>
+        </record>
+        <record id="job_pos_director" model="pkf.ac.job.position">
+            <field name="name">Director</field>
+        </record>
+        <record id="job_pos_partner" model="pkf.ac.job.position">
+            <field name="name">Partner</field>
+        </record>
+    </data>
+</odoo>

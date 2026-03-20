@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_engagement_root" name="Engagement Letters" sequence="10" web_icon="engagement_letter,static/description/icon.png"/>
+
+    <menuitem id="menu_engagement_letters"
+              name="Letter"
+              parent="menu_engagement_root"
+              action="engagement_letter.action_engagement_letters"
+              sequence="10"/>
+
+    <menuitem id="menu_engagement_templates"
+              name="Templates"
+              parent="menu_engagement_root"
+              action="engagement_letter.action_engagement_letter_templates"
+              sequence="20"/>
+
+</odoo>

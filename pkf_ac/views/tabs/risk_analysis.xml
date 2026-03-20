@@ -1,0 +1,1425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pkf_ac_evaluation_form_inherit_risk_analysis" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form.inherit.risk.analysis</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+
+        <field name="arch" type="xml">
+
+            <!-- Insert the tab into the first notebook of the form -->
+            <xpath expr="//notebook[1]" position="inside">
+
+                <page string="2 Risk Analysis" name="risk_analysis">
+
+                    <!-- ========================================================= -->
+                    <!-- AUDIT (as-is, includes risk levels + scores)               -->
+                    <!-- ========================================================= -->
+
+                    <!-- Header readonly texts -->
+                    <group col="2" name="risk_header_blocks" invisible="engagement_type != 'audit'">
+                        <group string="Objective" name="risk_objective_block">
+                            <field name="risk_objective_text"
+                                   nolabel="1"
+                                   readonly="1"
+                                   colspan="2"
+                                   widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+
+                        <group string="Risk Assessment Framework" name="risk_framework_block">
+                            <field name="risk_framework_text"
+                                   nolabel="1"
+                                   readonly="1"
+                                   colspan="2"
+                                   widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- Column headers -->
+                    <group col="12" name="risk_levels_header" invisible="engagement_type != 'audit'">
+                        <group colspan="8" string="Entity operations Risks - Reasoning"/>
+                        <group colspan="4" string="Risk level (1 - Low; 2 - Medium; 3 - High; N/A)"/>
+                    </group>
+
+                    <!-- 2.1 (wide: 9/3) -->
+                    <group col="12" name="risk_row_1" invisible="engagement_type != 'audit'">
+                        <group colspan="9">
+                            <field name="risk_reasoning_1" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_1"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_1" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_1"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.2 (wide: 9/3) -->
+                    <group col="12" name="risk_row_2" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_2" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_2"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_2" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_2"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.3 (wide: 9/3) -->
+                    <group col="12" name="risk_row_3" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_3" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_3"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_3" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_3"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.4 (wide: 9/3) -->
+                    <group col="12" name="risk_row_4" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_4" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_4"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_4" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_4"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.5 (wide: 9/3) -->
+                    <group col="12" name="risk_row_5" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_5" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_5"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_5" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_5"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.6 (wide: 9/3) -->
+                    <group col="12" name="risk_row_6" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_6" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_6"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_6" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_6"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.7 (wide: 9/3) -->
+                    <group col="12" name="risk_row_7" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_7" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_7"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_7" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_7"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.8 (wide: 9/3) -->
+                    <group col="12" name="risk_row_8" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_8" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_8"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_8" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_8"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.9 (wide: 9/3) -->
+                    <group col="12" name="risk_row_9" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_9" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_9"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_9" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_9"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.10 (wide: 9/3) -->
+                    <group col="12" name="risk_row_10" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_10" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_10"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_10" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_10"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.11 (wide: 9/3) -->
+                    <group col="12" name="risk_row_11" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_11" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_11"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_11" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_11"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.12 (wide: 9/3) -->
+                    <group col="12" name="risk_row_12" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_12" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_12"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_12" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_12"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.13 (wide: 9/3) -->
+                    <group col="12" name="risk_row_13" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_13" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_13"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_13" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_13"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.14 (wide: 9/3) -->
+                    <group col="12" name="risk_row_14" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_14" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_14"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_14" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_14"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.15 (wide: 9/3) -->
+                    <group col="12" name="risk_row_15" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_15" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_15"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_15" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_15"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.16 (wide: 9/3) -->
+                    <group col="12" name="risk_row_16" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_16" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_16"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_16" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_16"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.17 (wide: 9/3) -->
+                    <group col="12" name="risk_row_17" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_17" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_17"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_17" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_17"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.18 (wide: 9/3) -->
+                    <group col="12" name="risk_row_18" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_18" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_18"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_18" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_18"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.19 (wide: 9/3) -->
+                    <group col="12" name="risk_row_19" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_19" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_19"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_19" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_19"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.20 (wide: 9/3) -->
+                    <group col="12" name="risk_row_20" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_20" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_20"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_20" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_20"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.21 (wide: 9/3) -->
+                    <group col="12" name="risk_row_21" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_21" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_21"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_21" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_21"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.22 (wide: 9/3) -->
+                    <group col="12" name="risk_row_22" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_22" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_22"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_22" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_22"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.23 (wide: 9/3) -->
+                    <group col="12" name="risk_row_23" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_23" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_23"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_23" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_23"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.24 (wide: 9/3) -->
+                    <group col="12" name="risk_row_24" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_24" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_24"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_24" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_24"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.25 (wide: 9/3) -->
+                    <group col="12" name="risk_row_25" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_25" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_25"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_25" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_25"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.26 (wide: 9/3) -->
+                    <group col="12" name="risk_row_26" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_26" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_26"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_26" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_26"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.27 (wide: 9/3) -->
+                    <group col="12" name="risk_row_27" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_27" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_27"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_27" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_27"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.28 (wide: 9/3) -->
+                    <group col="12" name="risk_row_28" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_28" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_28"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_28" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_28"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.29 (wide: 9/3) -->
+                    <group col="12" name="risk_row_29" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_29" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_29"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_29" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_29"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.30 (wide: 9/3) -->
+                    <group col="12" name="risk_row_30" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_30" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_30"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_30" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_30"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.31 (wide: 9/3) -->
+                    <group col="12" name="risk_row_31" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_31" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_31"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_31" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_31"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- 2.32 (wide: 9/3) -->
+                    <group col="12" name="risk_row_32" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="12" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group colspan="9">
+                            <field name="risk_reasoning_32" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group colspan="3">
+                            <field name="risk_level_32"
+                                   string="Risk Level"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group name="risk_guidance_row_32" invisible="engagement_type != 'audit'">
+                        <field name="risk_guidance_32"
+                               nolabel="1"
+                               colspan="2"
+                               readonly="1"
+                               widget="text"
+                               options="{'line_breaks': true}"/>
+                    </group>
+
+                    <!-- Scores (only for Audit) -->
+                    <group col="2" name="risk_scores_bottom" class="mt16" invisible="engagement_type != 'audit'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="low_risk_factors" readonly="1"/>
+                            <field name="medium_risk_factors" readonly="1"/>
+                            <field name="high_risk_factors" readonly="1"/>
+                            <field name="overall_engagement_risk" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_score" readonly="1"/>
+                            <field name="out_of_possible" readonly="1"/>
+                            <field name="rating" readonly="1"/>
+                        </group>
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                    </group>
+
+                    <!-- ========================================================= -->
+                    <!-- REVIEW (2.33 - 2.47) - pairs with separators, NO scores   -->
+                    <!-- IMPORTANT: use ONLY risk_reasoning_* / risk_level_*        -->
+                    <!-- ========================================================= -->
+
+                    <!-- 2.33 | 2.40 -->
+                    <group col="2" name="review_row_33_40" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_reasoning_33" readonly="state in ('done','done_locked','lost')"/>
+
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_40" readonly="state in ('done','done_locked','lost')"/>
+
+                        </group>
+                    </group>
+                    <group col="2" name="review_row_guidance_33_40_" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_guidance_33"
+                                   nolabel="1"
+                                   readonly="1"
+                                   widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_40"
+                                   nolabel="1"
+                                   readonly="1"
+                                   widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.34 | 2.41 -->
+                    <group col="2" name="review_row_34_41" invisible="engagement_type != 'review'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_34" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_41" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="review_row_guidance_34_41" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_guidance_34" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_41" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.35 | 2.42 -->
+                    <group col="2" name="review_row_35_42" invisible="engagement_type != 'review'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_35" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_42" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="review_row_guidance_35_42" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_guidance_35" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_42" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.36 | 2.43 -->
+                    <group col="2" name="review_row_36_43" invisible="engagement_type != 'review'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_36" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_43" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="review_row_guidance_36_43" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_guidance_36" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_43" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.37 | 2.44 -->
+                    <group col="2" name="review_row_37_44" invisible="engagement_type != 'review'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_37" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_44" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="review_row_guidance_37_44" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_guidance_37" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_44" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.38 | 2.45 -->
+                    <group col="2" name="review_row_38_45" invisible="engagement_type != 'review'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_38" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_45" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="review_row_guidance_38_45" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_guidance_38" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_45" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.39 | 2.46 -->
+                    <group col="2" name="review_row_39_46" invisible="engagement_type != 'review'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_39" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_46" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="review_row_guidance_39_46" invisible="engagement_type != 'review'">
+                        <group>
+                            <field name="risk_guidance_39" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_46" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.47 (Conclusion) HALF WIDTH -->
+                    <group col="2" name="review_row_47" invisible="engagement_type != 'review'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_level_47"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group/>
+                    </group>
+                    <group col="2" name="review_row_guidance_47" invisible="engagement_type != 'review'">
+                        <group colspan="2">
+                            <field name="risk_guidance_47"
+                                   nolabel="1"
+                                   readonly="1"
+                                   widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- ========================================================= -->
+                    <!-- DUE DILIGENCE (2.48 - 2.71) - pairs, NO scores            -->
+                    <!-- mapping: 48|57, 49|58, 50|67, 52|68, 54|69, 56|70, 71      -->
+                    <!-- ========================================================= -->
+
+                    <!-- 2.48 | 2.57 -->
+                    <group col="2" name="due_row_48_57" invisible="engagement_type != 'due_diligence'">
+                        <group>
+                            <field name="risk_reasoning_48" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_57" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="due_row_guidance_48_57" invisible="engagement_type != 'due_diligence'">
+                        <group>
+                            <field name="risk_guidance_48" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_57" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.49 | 2.58 -->
+                    <group col="2" name="due_row_49_58" invisible="engagement_type != 'due_diligence'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_49" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_58" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="due_row_guidance_49_58" invisible="engagement_type != 'due_diligence'">
+                        <group>
+                            <field name="risk_guidance_49" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_58" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.50 | 2.67 -->
+                    <group col="2" name="due_row_50_67" invisible="engagement_type != 'due_diligence'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_50" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_67" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="due_row_guidance_50_67" invisible="engagement_type != 'due_diligence'">
+                        <group>
+                            <field name="risk_guidance_50" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_67" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.52 | 2.68 -->
+                    <group col="2" name="due_row_52_68" invisible="engagement_type != 'due_diligence'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_52" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_68" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="due_row_guidance_52_68" invisible="engagement_type != 'due_diligence'">
+                        <group>
+                            <field name="risk_guidance_52" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_68" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.54 | 2.69 -->
+                    <group col="2" name="due_row_54_69" invisible="engagement_type != 'due_diligence'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_54" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_69" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="due_row_guidance_54_69" invisible="engagement_type != 'due_diligence'">
+                        <group>
+                            <field name="risk_guidance_54" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_69" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.56 | 2.70 (NOTE: 2.70 is risk_level_70 only) -->
+                    <group col="2" name="due_row_56_70" invisible="engagement_type != 'due_diligence'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_56" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_level_70"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="due_row_guidance_56_70" invisible="engagement_type != 'due_diligence'">
+                        <group>
+                            <field name="risk_guidance_56" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_70" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.71 (single) -->
+                    <group col="2" name="due_row_71" invisible="engagement_type != 'due_diligence'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_partner_assessment_71"
+                                   placeholder="Select"
+                                   readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group/>
+                    </group>
+                    <group col="2" name="due_row_guidance_71" invisible="engagement_type != 'due_diligence'">
+                        <group colspan="2">
+                            <field name="risk_guidance_71" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- ========================================================= -->
+                    <!-- ATTESTATION (2.48 - 2.71) - pairs, NO scores              -->
+                    <!-- mapping: 48|57, 49|58, 50|63, 53|64, 54|65, 55|66, 56|69, 70|71 -->
+                    <!-- ========================================================= -->
+
+                    <!-- 2.48 | 2.57 -->
+                    <group col="2" name="att_row_48_57" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_reasoning_48" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_57" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_48_57" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_48" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_57" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.49 | 2.58 -->
+                    <group col="2" name="att_row_49_58" invisible="engagement_type != 'attestation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_49" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_58" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_49_58" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_49" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_58" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.50 | 2.63 -->
+                    <group col="2" name="att_row_50_63" invisible="engagement_type != 'attestation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_50" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_63" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_50_63" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_50" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_63" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.53 | 2.64 -->
+                    <group col="2" name="att_row_53_64" invisible="engagement_type != 'attestation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_53" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_64" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_53_64" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_53" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_64" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.54 | 2.65 -->
+                    <group col="2" name="att_row_54_65" invisible="engagement_type != 'attestation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_54" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_65" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_54_65" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_54" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_65" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.55 | 2.66 -->
+                    <group col="2" name="att_row_55_66" invisible="engagement_type != 'attestation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_55" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_66" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_55_66" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_55" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_66" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.56 | 2.69 -->
+                    <group col="2" name="att_row_56_69" invisible="engagement_type != 'attestation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_56" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_69" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_56_69" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_56" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_69" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.70 | 2.71 -->
+                    <group col="2" name="att_row_70_71" invisible="engagement_type != 'attestation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_level_70" placeholder="Select" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_partner_assessment_71" placeholder="Select" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="att_row_guidance_70_71" invisible="engagement_type != 'attestation'">
+                        <group>
+                            <field name="risk_guidance_70" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_71" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- ========================================================= -->
+                    <!-- COMPILATION (2.48 - 2.71) - pairs, NO scores              -->
+                    <!-- mapping: 48|57, 57|59, 51|60, 53|61, 54|62, 56|69, 70|71   -->
+                    <!-- ========================================================= -->
+
+                    <!-- 2.48 | 2.57 -->
+                    <group col="2" name="comp_row_48_57" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_reasoning_48" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_57" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="comp_row_guidance_48_57" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_guidance_48" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_57" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.57 | 2.59 -->
+                    <group col="2" name="comp_row_57_59" invisible="engagement_type != 'compilation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_57" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_59" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="comp_row_guidance_57_59" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_guidance_57" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_59" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.51 | 2.60 -->
+                    <group col="2" name="comp_row_51_60" invisible="engagement_type != 'compilation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_51" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_60" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="comp_row_guidance_51_60" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_guidance_51" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_60" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.53 | 2.61 -->
+                    <group col="2" name="comp_row_53_61" invisible="engagement_type != 'compilation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_53" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_61" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="comp_row_guidance_53_61" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_guidance_53" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_61" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.54 | 2.62 -->
+                    <group col="2" name="comp_row_54_62" invisible="engagement_type != 'compilation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_54" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_62" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="comp_row_guidance_54_62" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_guidance_54" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_62" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.56 | 2.69 -->
+                    <group col="2" name="comp_row_56_69" invisible="engagement_type != 'compilation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_reasoning_56" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_reasoning_69" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="comp_row_guidance_56_69" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_guidance_56" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_69" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                    <!-- 2.70 | 2.71 -->
+                    <group col="2" name="comp_row_70_71" invisible="engagement_type != 'compilation'">
+                        <separator string=" " colspan="2" style="border-bottom: 1px solid #ced4da; margin-bottom: 10px;"/>
+                        <group>
+                            <field name="risk_level_70" placeholder="Select" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                        <group>
+                            <field name="risk_partner_assessment_71" placeholder="Select" readonly="state in ('done','done_locked','lost')"/>
+                        </group>
+                    </group>
+                    <group col="2" name="comp_row_guidance_70_71" invisible="engagement_type != 'compilation'">
+                        <group>
+                            <field name="risk_guidance_70" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                        <group>
+                            <field name="risk_guidance_71" nolabel="1" readonly="1" widget="text"
+                                   options="{'line_breaks': true}"/>
+                        </group>
+                    </group>
+
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

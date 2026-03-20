@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="trend_research_view_form" model="ir.ui.view">
+        <field name="name">.trend.research.view.form</field>
+        <field name="model">trend.research</field>
+        <field name="arch" type="xml">
+            <form string="Trend Research Line">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="result_file" filename="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_pkf_ac_evaluation_form_inherit_trend" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form.inherit.trend</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='tab_overview']" position="after">
+
+                <page name="trend_research" string="3 Trend Research">
+                    <field name="new_page_lines_ids" readonly="state in ('done','done_locked','lost')">
+                        <list>
+                            <field name="name"/>
+                            <field name="file_name" string="File Name"/>
+                        </list>
+
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="name" string="Name"/>
+                                    <field name="description" string="Description"/>
+                                </group>
+                                <group>
+                                    <field name="result_file" filename="file_name" string="Upload The Result"/>
+                                </group>
+
+                            </group>
+                        </form>
+                    </field>
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_applicant_view_form_inherit_pkf" model="ir.ui.view">
+        <field name="name">hr.applicant.view.form.inherit.pkf</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Interview Notes">
+                    <field name="interview_notes"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

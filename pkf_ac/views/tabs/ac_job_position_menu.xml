@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_pkf_ac_job_position" model="ir.actions.act_window">
+        <field name="name">Job Position</field>
+        <field name="res_model">pkf.ac.job.position</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="job_position_list_view" model="ir.ui.view">
+        <field name="name">job.position.list</field>
+        <field name="model">pkf.ac.job.position</field>
+        <field name="arch" type="xml">
+            <list string="Job Position">
+                <field name="name"/>
+                <field name="hourly_rate"/>
+                <field name="currency_id" invisible="1" nolabel="1"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

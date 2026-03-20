@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="email_template_ac_review" model="mail.template">
+            <field name="name">A&amp;C Confirmation Required</field>
+            <field name="model_id" ref="pkf_ac.model_pkf_ac_team_independence"/>
+            <field name="subject">A&amp;C Confirmation Required {{object.evaluation_id.name}} - {{object.evaluation_id.engagement_type}}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="body_html" type="html">
+                <div id="__ac_root__" style="margin: 0px; padding: 0px; font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: #333; line-height: 1.6;">
+                    <div style="background-color: #f8f9fa; padding: 20px; border-bottom: 2px solid #0056b3;">
+                        <h2 style="margin: 0; color: #0056b3; font-size: 20px;">Acknowledgement of Independence</h2>
+                    </div>
+                    
+                    <div style="padding: 20px;">
+                        <p>Dear <t t-out="object.name"/>,</p>
+                        
+                        <p>Please review the engagement details and Acknowledgement of Independence below. To confirm your independence, please click <b>"Accept"</b> or <b>"Decline"</b> using the buttons provided.</p>
+
+                        <div style="background-color: #f1f3f5; padding: 15px; border-radius: 4px; margin: 20px 0;">
+                            <h3 style="margin-top: 0; font-size: 16px; border-bottom: 1px solid #dee2e6; padding-bottom: 5px;">Engagement Details</h3>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="padding: 4px 0; font-weight: bold; width: 140px;">Engagement Type:</td>
+                                    <td style="padding: 4px 0;"><t t-out="object.evaluation_id.get_engagement_type_label()"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 0; font-weight: bold;">Engagement Name:</td>
+                                    <td style="padding: 4px 0;"><t t-out="object.evaluation_id.engagement_id.name or ''"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 0; font-weight: bold;">Client Name:</td>
+                                    <td style="padding: 4px 0;"><t t-out="object.evaluation_id.client_id.name or ''"/></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="margin: 20px 0;">
+                            <p style="font-weight: bold; font-size: 15px; margin-bottom: 10px;">Acknowledgement Statement:</p>
+                            <p style="font-style: italic; color: #555;">
+                                For the engagement client and its related parties listed below (Appendix A), I confirm to the best of my knowledge and belief
+                                that I am in compliance with the firm's policies and procedures, and Part 4(A) Independence For Audit And Review Engagements
+                                of the IESBA Code of Ethics for Professional Accountants on independence.
+                            </p>
+                            
+                            <ul style="padding-left: 20px;">
+                                <li><b>Self Interest:</b> I have NO financial interest in the client.</li>
+                                <li><b>Self Review:</b> I am NOT in the position of having to form an opinion on my own work.</li>
+                                <li><b>Advocacy:</b> I am NOT perceived to promote, or actually promote, the position of the client.</li>
+                                <li><b>Familiarity:</b> A close relationship does NOT exist between me and the client.</li>
+                                <li><b>Intimidation:</b> My objectivity is NOT affected by any form of intimidation.</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: 30px; border-top: 1px solid #dee2e6; padding-top: 20px;">
+                            <h4 style="color: #0056b3; font-size: 16px; margin-bottom: 10px;">APPENDIX A: Related Parties</h4>
+                            
+                            <div t-if="object.evaluation_id.key_management_ids">
+                                <p style="font-weight: bold; margin-bottom: 5px;">Key Management Personnel:</p>
+                                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                                    <thead>
+                                        <tr style="background-color: #f8f9fa;">
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Name</th>
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Role</th>
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Country</th>
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Associated Companies</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div t-foreach="object.evaluation_id.key_management_ids" t-as="person">
+                                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.name"/></td>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.role or ''"/></td>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.country_id.name or ''"/></td>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.associated_companies or ''"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div>
+                            </div>
+
+                            <div t-if="object.evaluation_id.director_ids">
+                                <p style="font-weight: bold; margin-bottom: 5px;">Directors and Associated Companies:</p>
+                                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                                    <thead>
+                                        <tr style="background-color: #f8f9fa;">
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Name</th>
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Role</th>
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Country</th>
+                                            <th style="border: 1px solid #dee2e6; padding: 8px; text-align: left; width: 25%;">Associated Companies</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div t-foreach="object.evaluation_id.director_ids" t-as="person">
+                                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.name"/></td>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.role or ''"/></td>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.country_id.name or ''"/></td>
+                                                <td style="border: 1px solid #dee2e6; padding: 8px; width: 25%; border-top: 0px;"><t t-out="person.associated_companies or ''"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div>
+                            </div>
+                        </div>
+
+                        <div style="margin: 30px 0; text-align: center;">
+                            <p style="margin-bottom: 15px; font-weight: bold;">To confirm your independence, please click a button below:</p>
+                            <a t-att-href="object.action_accept_url()" data-link-type="accept"
+                            style="background-color: #28a745; padding: 12px 24px; text-decoration: none; color: #fff; border-radius: 4px; font-weight: bold; margin-right: 20px; display: inline-block;">
+                                I Accept
+                            </a>
+                            <a t-att-href="object.action_view_evaluation_url()" data-link-type="view-ac"
+                            style="background-color: #0056b3; padding: 12px 24px; text-decoration: none; color: #fff; border-radius: 4px; font-weight: bold; margin-right: 20px; display: inline-block;">
+                                View A&amp;C
+                            </a>
+                            <a t-att-href="object.action_decline_url()" data-link-type="decline"
+                            style="background-color: #dc3545; padding: 12px 24px; text-decoration: none; color: #fff; border-radius: 4px; font-weight: bold; display: inline-block;">
+                                I Decline
+                            </a>
+                        </div>
+
+                        <p style="color: #777; font-size: 12px; margin-top: 40px; border-top: 1px solid #eee; padding-top: 10px;">
+                            --<br/>
+                            <b>Administrator</b><br/>
+                            PKF-CALGARY<br/>
+                            403-375-9955 | info@pkfantares.com | <a href="http://pkfantares.com" style="color: #0056b3; text-decoration: none;">http://pkfantares.com</a>
+                        </p>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- MEDIA RESEARCH LINE TREE VIEW -->
+    <record id="view_pkf_ac_media_research_tree" model="ir.ui.view">
+        <field name="name">pkf.ac.media.research.tree</field>
+        <field name="model">pkf.ac.media.research</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="reception" decoration-success="reception == 'positive'" decoration-danger="reception == 'negative'"/>
+                <field name="title"/>
+                <field name="description"/>
+                <field name="analysis"/>
+                <field name="source" widget="url" text="Links"/>
+                <field name="date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- INHERIT FORM VIEW TO ADD MEDIA RESEARCH TAB -->
+    <record id="view_pkf_ac_evaluation_form_media" model="ir.ui.view">
+        <field name="name">pkf.ac.evaluation.form.media</field>
+        <field name="model">pkf.ac.evaluation</field>
+        <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="arch" type="xml">
+            
+            <notebook position="inside">
+                <page string="Media Research" name="media_research_page">
+                    <button name="action_research_media" 
+                            string="Perform Media Screening" 
+                            type="object" 
+                            class="btn-primary mb-3" 
+                            icon="fa-search-plus"/>
+                    <button name="action_export_media_csv"
+                            string="Export XLS"
+                            type="object"
+                            class="btn-secondary mb-3"
+                            icon="fa-file-excel-o"/>
+
+                    <field name="media_research_ids" nolabel="1">
+                        <list editable="bottom">
+                            <field name="reception" decoration-success="reception == 'positive'" decoration-danger="reception == 'negative'"/>
+                            <field name="title"/>
+                            <field name="description"/>
+                            <field name="analysis"/>
+                            <field name="auditor_comments"/>
+                            <field name="source" widget="url" text="Sources"/>
+                            <field name="date"/>
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+            
+        </field>
+    </record>
+
+</odoo>

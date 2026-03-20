@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_agent_manager,ai.agent manager,ai.model_ai_agent,group_ai_agent_manager,1,1,1,1
+access_ai_agent_user,ai.agent user,ai.model_ai_agent,group_ai_agent_user,1,0,0,0
+access_ai_topic_manager,ai.topic manager,ai.model_ai_topic,group_ai_agent_manager,1,1,1,1
+access_ai_topic_user,ai.topic user,ai.model_ai_topic,group_ai_agent_user,1,0,0,0
+access_ai_agent_source_manager,ai.agent.source manager,ai.model_ai_agent_source,group_ai_agent_manager,1,1,1,1
+access_ai_agent_source_user,ai.agent.source user,ai.model_ai_agent_source,group_ai_agent_user,1,0,0,0
+access_ai_embedding_manager,ai.embedding manager,ai.model_ai_embedding,group_ai_agent_manager,1,1,1,1
+access_ai_composer_manager,ai.composer manager,ai.model_ai_composer,group_ai_agent_manager,1,1,1,1
+access_ai_prompt_button_manager,ai.prompt.button manager,ai.model_ai_prompt_button,group_ai_agent_manager,1,1,1,1
