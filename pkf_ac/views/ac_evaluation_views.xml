@@ -180,7 +180,7 @@
                     </group>
 
                     <notebook>
-                        <page string="1 Overview" name="tab_overview">
+                        <page string="Overview" name="tab_overview">
                             <group/>
                         </page>
                     </notebook>

@@ -11,6 +11,7 @@ class PkfAcTeamIndependence(models.Model):
     name = fields.Char(string="Name", tracking=True)
     email = fields.Char(string="Email", tracking=True)
     partner_id = fields.Many2one("res.partner", string="Partner")
+    is_draft = fields.Boolean(string="Is Draft", default=True, help="True if created by the wizard but not yet sent.")
     confirmation = fields.Selection(
         [
             ("pending", "Pending"),

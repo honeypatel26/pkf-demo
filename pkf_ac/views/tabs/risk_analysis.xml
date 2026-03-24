@@ -6,12 +6,13 @@
         <field name="model">pkf.ac.evaluation</field>
         <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
 
+        <field name="priority" eval="20"/>
         <field name="arch" type="xml">
 
             <!-- Insert the tab into the first notebook of the form -->
-            <xpath expr="//notebook[1]" position="inside">
+            <xpath expr="//page[@name='tab_overview']" position="after">
 
-                <page string="2 Risk Analysis" name="risk_analysis">
+                <page string="Risk Analysis" name="risk_analysis">
 
                     <!-- ========================================================= -->
                     <!-- AUDIT (as-is, includes risk levels + scores)               -->

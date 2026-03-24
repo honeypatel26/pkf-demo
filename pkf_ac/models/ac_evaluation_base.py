@@ -169,7 +169,7 @@ class PkfAcEvaluation(models.Model):
     eqcr_needed = fields.Selection([("yes", "Yes"), ("no", "No")], string="EQCR Needed")
     sec_registrant = fields.Selection([("yes", "Yes"), ("no", "No")], string="SEC Registrant")
     new_page_lines_ids = fields.One2many(comodel_name='trend.research',inverse_name="evaluation_id", string="Trend Research Lines")
-    team_independence_ids = fields.One2many("pkf.ac.team.independence", "evaluation_id", string="Team Independence")
+    team_independence_ids = fields.One2many("pkf.ac.team.independence", "evaluation_id", string="Team Independence", domain=[('is_draft', '=', False)])
 
 
     partner_reviewer_id = fields.Many2one(
@@ -365,7 +365,8 @@ class PkfAcEvaluation(models.Model):
         if self.manager_assigned_id.partner_id:
             partners |= self.manager_assigned_id.partner_id
 
-        existing_partners = self.team_independence_ids.mapped('partner_id')
+        all_team_records = self.env['pkf.ac.team.independence'].search([('evaluation_id', '=', self.id)])
+        existing_partners = all_team_records.mapped('partner_id')
         new_team_vals = []
         for partner in partners:
             if partner not in existing_partners:
@@ -380,7 +381,8 @@ class PkfAcEvaluation(models.Model):
 
         # Open composer for the Team Independence model in mass_mail mode
         # mass_mail = sends one email per recipient (respects per-recipient edits)
-        team_members = self.team_independence_ids.filtered(lambda t: t.confirmation == 'pending')
+        all_team_records = self.env['pkf.ac.team.independence'].search([('evaluation_id', '=', self.id)])
+        team_members = all_team_records.filtered(lambda t: t.confirmation == 'pending')
 
         if not team_members:
             raise UserError(_("No pending team members to send emails to."))
@@ -398,6 +400,7 @@ class PkfAcEvaluation(models.Model):
             "default_composition_mode": "mass_mail",
             "default_email_layout_xmlid": "mail.mail_notification_layout_with_responsible_signature",
             "force_email": True,
+            "default_email_from": self.env.user.email_formatted,
         }
         return {
             "type": "ir.actions.act_window",

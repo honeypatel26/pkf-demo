@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Override the primary hr.employee form view to hide Personal Information -->
+    <record id="view_employee_form_sensitive_info" model="ir.ui.view">
+        <field name="name">hr.employee.form.sensitive.info</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='personal_information']" position="attributes">
+                <attribute name="groups">hr_recruitment_pkf.group_employee_sensitive_info</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Override the hr_payroll inherited view to hide Payroll and Salary Adjustments -->
+    <record id="view_employee_form_sensitive_payroll_info" model="ir.ui.view">
+        <field name="name">hr.employee.form.sensitive.payroll.info</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_payroll.payroll_hr_employee_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='payroll_information']" position="attributes">
+                <attribute name="groups">hr_recruitment_pkf.group_employee_sensitive_info</attribute>
+            </xpath>
+            <xpath expr="//page[@name='salary_attachment']" position="attributes">
+                <attribute name="groups">hr_recruitment_pkf.group_employee_sensitive_info</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -4,10 +4,11 @@
         <field name="name">pkf.ac.evaluation.form.relationship</field>
         <field name="model">pkf.ac.evaluation</field>
         <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="priority" eval="40"/>
         <field name="arch" type="xml">
 
             <!-- Add Single Relationship Tab -->
-            <notebook position="inside">
+            <xpath expr="//page[@name='budget_page']" position="after">
                 <page string="Relationship" name="relationship_page">
                     <group string="Relationship" name="relationship_group" col="12">
                         <group name="relationship_group_left" colspan="4">
@@ -48,7 +49,7 @@
                         </list>
                     </field>
                 </page>
-            </notebook>
+            </xpath>
         </field>
     </record>
 </odoo>

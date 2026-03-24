@@ -22,9 +22,10 @@
         <field name="name">pkf.ac.evaluation.form.media</field>
         <field name="model">pkf.ac.evaluation</field>
         <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="priority" eval="50"/>
         <field name="arch" type="xml">
             
-            <notebook position="inside">
+            <xpath expr="//page[@name='relationship_page']" position="after">
                 <page string="Media Research" name="media_research_page">
                     <button name="action_research_media" 
                             string="Perform Media Screening" 
@@ -49,7 +50,7 @@
                         </list>
                     </field>
                 </page>
-            </notebook>
+            </xpath>
             
         </field>
     </record>

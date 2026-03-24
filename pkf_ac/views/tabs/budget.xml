@@ -43,6 +43,7 @@
         <field name="name">pkf.ac.evaluation.form.budget</field>
         <field name="model">pkf.ac.evaluation</field>
         <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="priority" eval="30"/>
         <field name="arch" type="xml">
             
             <!-- Add Smart Button -->
@@ -56,8 +57,8 @@
             </div>
 
             <!-- Add Single Budget Tab -->
-            <notebook position="inside">
-                <page string="3 Budget" name="budget_page">
+            <xpath expr="//page[@name='risk_analysis']" position="after">
+                <page string="Budget" name="budget_page">
                     <!-- Current Budget Section -->
                     <group string="Current Budget" name="current_budget_group">
                         <field name="current_budget_line_ids" nolabel="1" colspan="2" context="{'default_budget_type': 'current'}" readonly="state in ('done','done_locked','lost')">
@@ -136,7 +137,7 @@
                     </group>
 
                 </page>
-            </notebook>
+            </xpath>
 
         </field>
     </record>

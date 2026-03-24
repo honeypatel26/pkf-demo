@@ -28,6 +28,16 @@ class EngagementLetter(models.Model):
     responsible_partner_id = fields.Many2one("res.users", string="Responsible Partner", required=True, tracking=True)
     owner_id = fields.Many2one("res.users", string="Owner", required=True, tracking=True)
 
+    is_responsible_partner = fields.Boolean(compute="_compute_partner_roles")
+    is_owner = fields.Boolean(compute="_compute_partner_roles")
+
+    @api.depends("responsible_partner_id", "owner_id")
+    @api.depends_context("uid")
+    def _compute_partner_roles(self):
+        for rec in self:
+            rec.is_responsible_partner = (rec.responsible_partner_id.id == self.env.uid)
+            rec.is_owner = (rec.owner_id.id == self.env.uid)
+
     sign_template_id = fields.Many2one("sign.template", string="Signed Template", copy=False)
     sign_request_count = fields.Integer(compute="_compute_sign_request_count")
 
@@ -105,7 +115,7 @@ class EngagementLetter(models.Model):
                     template.send_mail(
                         rec.id, 
                         force_send=True, 
-                        email_values={'recipient_ids': [(4, rec.create_uid.id)]}
+                        email_values={'recipient_ids': [(4, rec.create_uid.partner_id.id)]}
                     )
 
     def _render_pdf_attachment(self):
@@ -119,8 +129,6 @@ class EngagementLetter(models.Model):
                 "name": f"Engagement Letter - {self.name or self.display_name}.pdf",
                 "type": "binary",
                 "datas": base64.b64encode(pdf_bytes),
-                "res_model": self._name,
-                "res_id": self.id,
                 "mimetype": "application/pdf",
             }
         )
@@ -128,7 +136,7 @@ class EngagementLetter(models.Model):
 
     def action_send_for_sign(self):
         self.ensure_one()
-        if self.state != "approved":
+        if self.state != "approved" and self.env.user != self.responsible_partner_id:
             raise UserError(_("You can start signature process only after partner approval."))
 
         # 1. Render PDF Attachment
@@ -141,6 +149,12 @@ class EngagementLetter(models.Model):
             attachment_id=attachment.id
         )
         sign_template = self.env["sign.template"].browse(tpl_id)
+        
+        # Reassign attachment to the Sign Template so public signers don't get record access errors 
+        attachment.write({
+            "res_model": "sign.template",
+            "res_id": sign_template.id,
+        })
 
         # Helper creates it as inactive by default, we might want it active?
         # Let's activate it just in case
@@ -213,7 +227,7 @@ class EngagementLetter(models.Model):
 
     def action_create_sale_order(self):
         self.ensure_one()
-        if self.state != "approved":
+        if self.state != "approved" and self.env.user != self.responsible_partner_id:
             raise UserError(_("You can create Sale Order only after partner approval."))
 
         # Prepare Order Lines
@@ -281,10 +295,8 @@ class EngagementLetter(models.Model):
 
     def action_mark_sent_to_client(self):
         for rec in self:
-            if rec.state != "approved":
+            if rec.state != "approved" and self.env.user != rec.responsible_partner_id:
                 raise UserError(_("You can mark as sent only after partner approval."))
-            if self.env.user == rec.responsible_partner_id:
-                raise UserError(_("Responsible Partner should not mark sent in this flow."))
 
             rec.state = "sent"
             rec.message_post(body=_("Marked as sent to client (manual)."))

@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "category": "Operations",
     "summary": "Acceptance & Continuance Evaluation",
-    "depends": ["base", "mail", "contacts", "crm", "ai_agent_restrict", "engagement_letter"],
+    "depends": ["base", "mail", "contacts", "crm", "engagement_letter"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
@@ -24,8 +24,8 @@
         "views/tabs/relationship.xml",
         "views/tabs/media_research.xml",
         "views/tabs/trend_research.xml",
-        "views/tabs/risk_panel.xml",
         "views/tabs/team_independence.xml",
+        "views/tabs/risk_panel.xml",
         "views/mail_composer_inherit.xml",
         "report/a&c_main_report.xml",
         "data/ac_master_data.xml",

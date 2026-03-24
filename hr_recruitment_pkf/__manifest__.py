@@ -13,9 +13,13 @@
     'depends': [
         'hr_recruitment',
         'website_hr_recruitment',
+        'hr',
+        'hr_payroll',
     ],
     'data': [
+        'security/security.xml',
         'views/hr_applicant_views.xml',
+        'views/hr_employee_views.xml',
         'views/website_hr_recruitment_templates.xml',
     ],
     'application': False,

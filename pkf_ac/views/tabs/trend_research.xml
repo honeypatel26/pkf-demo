@@ -23,11 +23,12 @@
         <field name="name">pkf.ac.evaluation.form.inherit.trend</field>
         <field name="model">pkf.ac.evaluation</field>
         <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="priority" eval="60"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//page[@name='tab_overview']" position="after">
+            <xpath expr="//page[@name='media_research_page']" position="after">
 
-                <page name="trend_research" string="3 Trend Research">
+                <page name="trend_research" string="Trend Research">
                     <field name="new_page_lines_ids" readonly="state in ('done','done_locked','lost')">
                         <list>
                             <field name="name"/>

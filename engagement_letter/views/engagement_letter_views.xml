@@ -62,12 +62,11 @@
             <form string="Engagement Letter">
                 <header>
 
-                    <!-- Draft: обычный пользователь/создатель может отправить партнеру (но не сам партнер) -->
                     <button name="action_send_to_partner"
                             type="object"
                             string="Send to Partner"
                             class="btn-primary"
-                            invisible="state != 'draft' or responsible_partner_id == uid"/>
+                            invisible="state != 'draft' or is_responsible_partner"/>
 
                     <!-- Preview PDF всегда -->
                     <button name="action_preview_pdf"
@@ -80,25 +79,25 @@
                             type="object"
                             string="Approve"
                             class="btn-primary"
-                            invisible="state != 'review' or responsible_partner_id != uid"/>
+                            invisible="state != 'review' or not is_responsible_partner"/>
 
                     <button name="action_send_for_sign"
                             type="object"
                             string="Send for Signature"
                             class="btn-primary"
-                            invisible="state != 'approved'"/>
+                            invisible="state not in ('draft', 'approved') or not is_responsible_partner" />
 
                     <button name="action_create_sale_order"
                             type="object"
                             string="Create Sale Order"
                             class="btn-secondary"
-                            invisible="state != 'approved'"/>
+                            invisible="state not in ('draft', 'approved') or not is_responsible_partner" />
 
                     <button name="action_mark_sent_to_client"
                             type="object"
                             string="Mark Sent to Client"
                             class="btn-secondary"
-                            invisible="state != 'approved'"/>
+                            invisible="state not in ('draft', 'approved') or not is_responsible_partner"/>
 
                     <field name="state"
                            widget="statusbar"
@@ -126,6 +125,8 @@
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="1" class="oe_inline"/>
+                            <field name="is_responsible_partner" invisible="1"/>
+                            <field name="is_owner" invisible="1"/>
                         </h1>
                     </div>
 

@@ -5,9 +5,10 @@
         <field name="name">pkf.ac.evaluation.form.inherit.risk.panel</field>
         <field name="model">pkf.ac.evaluation</field>
         <field name="inherit_id" ref="pkf_ac.view_pkf_ac_evaluation_form"/>
+        <field name="priority" eval="80"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//notebook" position="inside">
+            <xpath expr="//page[@name='team_independence']" position="after">
                 <page string="Risk Panel"
                       name="risk_panel"
                       groups="pkf_ac.group_pkf_ac_partner,pkf_ac.group_pkf_ac_admin">

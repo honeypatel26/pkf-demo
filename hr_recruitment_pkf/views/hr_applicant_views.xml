@@ -9,6 +9,18 @@
                 <page string="Interview Notes">
                     <field name="interview_notes"/>
                 </page>
+                <page string="AI Analysis">
+                    <group class="mt-3">
+                        <group>
+                            <field name="applicant_resume" filename="applicant_resume_name"/>
+                        </group>
+                        <group>
+                            <field name="ai_analysis_score" readonly="1"/>
+                        </group>
+                    </group>
+                    <separator string="AI Analysis Details"/>
+                    <field name="ai_analysis" readonly="1" nolabel="1" placeholder="AI Analysis will appear here..."/>
+                </page>
             </xpath>
         </field>
     </record>

@@ -6,6 +6,27 @@ from odoo import models, fields, api, _
 class MailComposeMessage(models.TransientModel):
     _inherit = 'mail.compose.message'
 
+    @api.model
+    def get_view(self, view_id=None, view_type='form', **options):
+        res = super(MailComposeMessage, self).get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type == 'form' and self.env.context.get('default_evaluation_id'):
+            from lxml import etree
+            doc = etree.XML(res['arch'])
+            for node in doc.xpath("//field[@name='mass_mailing_name']"):
+                node.set('invisible', '1')
+            for node in doc.xpath("//field[@name='mass_mailing_campaign_id']"):
+                node.set('invisible', '1')
+            res['arch'] = etree.tostring(doc, encoding='unicode')
+        return res
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super(MailComposeMessage, self).default_get(fields_list)
+        if self.env.context.get('default_evaluation_id'):
+            if 'email_from' in fields_list and not res.get('email_from'):
+                res['email_from'] = self.env.user.email_formatted
+        return res
+
     ac_partner_ids = fields.Many2many(
         'res.partner',
         relation='mail_compose_message_ac_res_partner_rel',
@@ -29,7 +50,7 @@ class MailComposeMessage(models.TransientModel):
             return list(set(partner_ids))
         return False
 
-    def _inject_member_urls(self, body, accept_url, decline_url):
+    def _inject_member_urls(self, body, accept_url, decline_url, view_ac_url):
         """
         Safely replace Accept/Decline href attributes in the email HTML body.
         Uses lxml (available in all Odoo installs) to avoid regex HTML corruption.
@@ -130,6 +151,16 @@ class MailComposeMessage(models.TransientModel):
                 except Exception:
                     pass
 
+            if evaluation_id:
+                selected_partner_ids = self.ac_partner_ids.ids if self.ac_partner_ids else []
+                unselected_members = self.env['pkf.ac.team.independence'].search([
+                    ('evaluation_id', '=', evaluation_id),
+                    ('partner_id', 'not in', selected_partner_ids),
+                    ('confirmation', '=', 'pending')
+                ])
+                if unselected_members:
+                    unselected_members.unlink()
+
             new_team_ids = []
             if self.ac_partner_ids and evaluation_id:
                 for partner in self.ac_partner_ids:
@@ -157,15 +188,17 @@ class MailComposeMessage(models.TransientModel):
 
             # ── 3. Send one correctly rendered email per team member ──
             for member in team_members:
+                member.write({'is_draft': False})
                 accept_url = member.action_accept_url()
                 decline_url = member.action_decline_url()
+                view_ac_url = member.action_view_evaluation_url() if hasattr(member, 'action_view_evaluation_url') else ''
 
                 # Render body and subject for this specific member
                 rendered_body = self._render_body_for_member(edited_body, member)
                 rendered_subject = self._render_subject_for_member(edited_subject, member)
 
                 # Inject correct per-recipient Accept/Decline URLs using safe lxml parser
-                final_body = self._inject_member_urls(rendered_body, accept_url, decline_url)
+                final_body = self._inject_member_urls(rendered_body, accept_url, decline_url, view_ac_url)
 
                 # ── FIX: Use ONLY recipient_ids OR email_to — never both ──
                 # Using both causes Odoo to send two emails to the same address.
